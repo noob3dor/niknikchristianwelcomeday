@@ -3,29 +3,32 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Niknik's Christian Welcome Day & 1st Birthday</title>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <title>Little Champion's Christening</title>
   <style>
     :root {
-      --racing-red: #e10600;
-      --racing-dark: #15151e;
-      --racing-card: #1f1f2d;
-      --text-light: #ffffff;
-      --text-gray: #a0a0b0;
-      --accent-yellow: #fff000;
-      --success-green: #00e676;
+      --bg-color: #0b0c10;
+      --card-bg: #1a1c23;
+      --accent-color: #e22828; /* Racing Red */
+      --secondary-accent: #f39c12; /* Trophy Gold */
+      --text-color: #ffffff;
+      --subtext-color: #c5c6c7;
     }
 
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
+      font-family: 'Impact', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
 
     body {
-      font-family: 'Poppins', sans-serif;
-      background-color: var(--racing-dark);
-      color: var(--text-light);
+      background-color: var(--bg-color);
+      background-image: 
+        radial-gradient(#1f2833 15%, transparent 16%),
+        radial-gradient(#1f2833 15%, transparent 16%);
+      background-size: 20px 20px;
+      background-position: 0 0, 10px 10px;
+      color: var(--text-color);
       display: flex;
       justify-content: center;
       align-items: center;
@@ -33,195 +36,181 @@
       padding: 20px;
     }
 
-    .container {
-      background-color: var(--racing-card);
-      border-radius: 16px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-      border: 2px solid var(--racing-red);
-      width: 100%;
-      max-width: 480px;
+    .invite-card {
+      background: linear-gradient(135deg, #121317 0%, #1f232d 100%);
+      border: 3px solid var(--accent-color);
+      border-radius: 14px;
       padding: 30px;
+      max-width: 480px;
+      width: 100%;
       text-align: center;
+      box-shadow: 0 0 25px rgba(226, 40, 40, 0.4), inset 0 0 15px rgba(0, 0, 0, 0.8);
       position: relative;
       overflow: hidden;
     }
 
-    .header-tag {
-      background-color: var(--racing-red);
-      color: var(--text-light);
-      font-family: 'Orbitron', sans-serif;
-      font-size: 0.8rem;
-      padding: 6px 16px;
-      border-radius: 20px;
+    /* Checkered Flag Top Border */
+    .invite-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 12px;
+      background: 
+        linear-gradient(45deg, #000 25%, transparent 25%), 
+        linear-gradient(-45deg, #000 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, #000 75%),
+        linear-gradient(-45deg, transparent 75%, #000 75%);
+      background-size: 16px 16px;
+      background-position: 0 0, 0 8px, 8px -8px, -8px 0px;
+      background-color: #fff;
+    }
+
+    .badge {
       display: inline-block;
-      margin-bottom: 15px;
-      letter-spacing: 2px;
+      background: var(--accent-color);
+      color: #fff;
+      padding: 6px 16px;
+      border-radius: 4px;
+      font-size: 0.85rem;
+      font-weight: bold;
+      margin-top: 10px;
+      margin-bottom: 12px;
       text-transform: uppercase;
+      letter-spacing: 2px;
+      transform: skew(-10deg);
+      box-shadow: 2px 2px 0px #000;
     }
 
     h1 {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 1.6rem;
-      margin-bottom: 10px;
-      color: var(--text-light);
+      font-size: 2.3rem;
+      margin-bottom: 5px;
+      color: #ffffff;
       text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-style: italic;
+      text-shadow: 2px 2px 0px var(--accent-color);
     }
 
     p.subtitle {
-      color: var(--text-gray);
-      font-size: 0.95rem;
-      margin-bottom: 25px;
-    }
-
-    .form-group {
-      text-align: left;
+      font-family: 'Segoe UI', sans-serif;
+      color: var(--subtext-color);
       margin-bottom: 20px;
+      font-size: 0.95rem;
+      font-weight: 500;
     }
 
-    label {
-      display: block;
-      font-size: 0.85rem;
-      color: var(--text-gray);
+    .event-details {
+      background: #090a0c;
+      border-left: 4px solid var(--secondary-accent);
+      padding: 15px;
+      border-radius: 6px;
+      margin-bottom: 25px;
+      text-align: left;
+    }
+
+    .detail-item {
       margin-bottom: 8px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 1px;
+      font-size: 0.95rem;
+      font-family: 'Segoe UI', sans-serif;
     }
 
-    input[type="text"] {
+    .detail-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .detail-item strong {
+      color: var(--secondary-accent);
+      text-transform: uppercase;
+    }
+
+    .rsvp-form input, .rsvp-form select, .rsvp-form button {
+      font-family: 'Segoe UI', sans-serif;
       width: 100%;
       padding: 14px;
-      border-radius: 8px;
-      border: 1px solid #333345;
-      background-color: #15151e;
-      color: var(--text-light);
-      font-size: 1rem;
+      margin-bottom: 14px;
+      border-radius: 6px;
+      border: 1px solid #333;
+      background: #090a0c;
+      color: #fff;
+      font-size: 0.95rem;
       outline: none;
-      transition: border-color 0.3s;
     }
 
-    input[type="text"]:focus {
-      border-color: var(--racing-red);
+    .rsvp-form input:focus, .rsvp-form select:focus {
+      border-color: var(--secondary-accent);
     }
 
-    .radio-group {
-      display: flex;
-      gap: 15px;
-    }
-
-    .radio-btn {
-      flex: 1;
-      position: relative;
-    }
-
-    .radio-btn input {
-      position: absolute;
-      opacity: 0;
-      cursor: pointer;
-    }
-
-    .radio-label {
-      display: block;
-      padding: 12px;
-      text-align: center;
-      background-color: #15151e;
-      border: 1px solid #333345;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: 600;
-      transition: all 0.3s;
-    }
-
-    .radio-btn input:checked + .radio-label {
-      border-color: var(--racing-red);
-      background-color: rgba(225, 6, 0, 0.15);
-      color: var(--accent-yellow);
-    }
-
-    .submit-btn {
-      width: 100%;
-      background-color: var(--racing-red);
-      color: var(--text-light);
-      font-family: 'Orbitron', sans-serif;
-      font-size: 1rem;
-      font-weight: 800;
-      padding: 16px;
+    .rsvp-form button {
+      font-family: 'Impact', 'Segoe UI', sans-serif;
+      background: linear-gradient(180deg, #e22828 0%, #a81212 100%);
+      color: #fff;
+      font-size: 1.2rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
       border: none;
-      border-radius: 8px;
       cursor: pointer;
-      margin-top: 10px;
+      transition: all 0.2s ease;
+      transform: skew(-5deg);
+      box-shadow: 0 4px 0px #610b0b;
+    }
+
+    .rsvp-form button:hover {
+      background: linear-gradient(180deg, #ff3333 0%, #c41414 100%);
+      box-shadow: 0 2px 0px #610b0b;
+      transform: skew(-5deg) translateY(2px);
+    }
+
+    #confirmation {
+      display: none;
+      font-family: 'Impact', sans-serif;
+      font-size: 1.3rem;
+      margin-top: 15px;
       letter-spacing: 1px;
       text-transform: uppercase;
-      transition: transform 0.1s, background-color 0.3s;
     }
 
-    .submit-btn:hover {
-      background-color: #ff1a15;
+    .attending-msg {
+      color: #2ecc71; /* Green */
     }
 
-    .submit-btn:active {
-      transform: scale(0.98);
-    }
-
-    .message-box {
-      margin-top: 20px;
-      padding: 15px;
-      border-radius: 8px;
-      font-size: 0.95rem;
-      display: none;
-      font-weight: 600;
-      line-height: 1.4;
-    }
-
-    .message-box.yes {
-      background-color: rgba(0, 230, 118, 0.15);
-      border: 1px solid var(--success-green);
-      color: var(--success-green);
-    }
-
-    .message-box.no {
-      background-color: rgba(255, 240, 0, 0.15);
-      border: 1px solid var(--accent-yellow);
-      color: var(--accent-yellow);
+    .declined-msg {
+      color: #f39c12; /* Orange / Gold */
     }
   </style>
 </head>
 <body>
 
-  <div class="container">
-    <div class="header-tag">Paddock Pass RSVP</div>
-    <h1>Niknik's 1st Birthday</h1>
-    <p class="subtitle">Christian Welcome Day & Racing Party</p>
+  <div class="invite-card">
+    <span class="badge">🏆 BORN CHAMPION • HOLY BAPTISM</span>
+    <h1>OUR LITTLE CHAMPION</h1>
+    <p class="subtitle">Join us as we celebrate the first major milestone and blessing of our Little Racing Champion!</p>
 
-    <form id="rsvpForm">
-      <div class="form-group">
-        <label for="guestName">Guest Name / Family Name</label>
-        <input type="text" id="guestName" placeholder="Enter your full name" required>
-      </div>
+    <div class="event-details">
+      <div class="detail-item"><strong>Date:</strong> Setyembre 30, 2026</div>
+      <div class="detail-item"><strong>Baptism Ceremony:</strong> 10:00 AM</div>
+      <div class="detail-item"><strong>Victory Party (Paddock):</strong> Grand Ballroom</div>
+    </div>
 
-      <div class="form-group">
-        <label>Will you join the race?</label>
-        <div class="radio-group">
-          <div class="radio-btn">
-            <input type="radio" id="attendYes" name="attendance" value="Yes" checked>
-            <label for="attendYes" class="radio-label">YES 🏎️</label>
-          </div>
-          <div class="radio-btn">
-            <input type="radio" id="attendNo" name="attendance" value="No">
-            <label for="attendNo" class="radio-label">NO 🏁</label>
-          </div>
-        </div>
-      </div>
-
-      <button type="submit" class="submit-btn" id="submitBtn">CLAIM VIP CHAMPION PASS 🏎️</button>
+    <!-- RSVP Form Component -->
+    <form class="rsvp-form" id="rsvpForm">
+      <input type="text" id="name" name="name" placeholder="Guest / Pit Crew Full Name" required>
+      <select id="attendance" name="attendance" required>
+        <option value="" disabled selected>Will you join the victory lap?</option>
+        <option value="Yes, I will be there!">🏁 YES! Count me in for the celebration</option>
+        <option value="Sorry, I can't make it">❌ NO - Out of the Pit Lane</option>
+      </select>
+      <button type="submit" id="submitBtn">CLAIM VIP CHAMPION PASS 🏎️</button>
     </form>
 
-    <div id="messageBox" class="message-box"></div>
+    <!-- Success Message Container -->
+    <div id="confirmation"></div>
   </div>
 
   <script>
     /**
-     * Service Layer - Handles API communication with Google Apps Script
+     * Service Layer - Background Data Dispatcher
      */
     class RsvpService {
       constructor(scriptUrl) {
@@ -229,55 +218,58 @@
       }
 
       sendResponse(data) {
-        // Fire-and-forget strategy using no-cors mode
+        const formData = new URLSearchParams();
+        formData.append('name', data.name);
+        formData.append('attendance', data.attendance);
+
+        // Instant background fetch without blocking UI thread
         return fetch(this.scriptUrl, {
           method: 'POST',
           mode: 'no-cors',
           headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/x-www-form-urlencoded'
           },
-          body: JSON.stringify(data)
+          body: formData.toString()
         });
       }
     }
 
     /**
-     * UI Layer - Handles DOM operations and rendering
+     * UI Layer - Instant Renderer
      */
-    class RsvpUI {
+    class RsvpFormUI {
       constructor() {
         this.formElement = document.getElementById('rsvpForm');
-        this.nameInput = document.getElementById('guestName');
-        this.submitBtn = document.getElementById('submitBtn');
-        this.messageBox = document.getElementById('messageBox');
+        this.nameInput = document.getElementById('name');
+        this.attendanceSelect = document.getElementById('attendance');
+        this.confirmationMessage = document.getElementById('confirmation');
       }
 
       getFormData() {
-        const attendanceValue = document.querySelector('input[name="attendance"]:checked').value;
         return {
-          name: this.nameInput.value.trim(),
-          attendance: attendanceValue
+          name: this.nameInput.value,
+          attendance: this.attendanceSelect.value
         };
       }
 
-      showSuccessState(attendance) {
-        // Hide form immediately for fast UX
+      showSuccessState(attendanceValue) {
+        // Tago agad ang form instantly
         this.formElement.style.display = 'none';
 
-        if (attendance === 'Yes') {
-          this.messageBox.className = 'message-box yes';
-          this.messageBox.innerHTML = '🏁 VIP CHAMPION PASS CONFIRMED!<br>See you at the starting line! 🎉';
+        if (attendanceValue.includes("Yes")) {
+          this.confirmationMessage.className = 'attending-msg';
+          this.confirmationMessage.innerHTML = '🏁 VIP CHAMPION PASS CONFIRMED! SEE YOU THERE! 🎉';
         } else {
-          this.messageBox.className = 'message-box no';
-          this.messageBox.innerHTML = "🏁 WE'LL MISS YOU AT THE RACE!<br>Thank you for letting us know! 🙏";
+          this.confirmationMessage.className = 'declined-msg';
+          this.confirmationMessage.innerHTML = '🏁 WE\'LL MISS YOU AT THE RACE! THANK YOU FOR LETTING US KNOW! 🙏';
         }
 
-        this.messageBox.style.display = 'block';
+        this.confirmationMessage.style.display = 'block';
       }
     }
 
     /**
-     * Controller Layer - Application Orchestrator (Optimized for Instant Speed)
+     * Controller Layer - Instant Event Handler
      */
     class RsvpApp {
       constructor(service, ui) {
@@ -294,27 +286,22 @@
         
         const formData = this.ui.getFormData();
 
-        if (!formData.name) return;
-
-        // 1. INSTANT FEEDBACK: Ipakita agad ang prompt sa bisita nang walang anumang delay
+        // 1. INSTANT UX: Ipakita agad sa guest ang success message na walang loading delay
         this.ui.showSuccessState(formData.attendance);
 
-        // 2. BACKGROUND SUBMISSION: Ipadala sa Google Sheet nang hindi pinaghihintay ang bisita
-        this.service.sendResponse(formData).catch(err => {
-          console.error('Background Sync Error:', err);
-        });
+        // 2. BACKGROUND FIRE-AND-FORGET: I-send ang payload sa Google Script nang hindi pinaghihintay ang browser
+        this.service.sendResponse(formData).catch(err => console.error('Background dispatch error:', err));
       }
     }
 
-    // Application Initialization
-    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxe7zK6pM80TToa25uRj5Y-u1Aia4Qz_Y7k8-f7i4sIeX89L6g2EaY_5j2yY8Z5/exec';
-    
-    document.addEventListener('DOMContentLoaded', () => {
-      const service = new RsvpService(SCRIPT_URL);
-      const ui = new RsvpUI();
-      const app = new RsvpApp(service, ui);
-      app.init();
-    });
+    // Entry Point Initialization
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzWet9ZV7nCGUq8_Y4AMakd-rQx5leV5PVIT54s7QuOd0nDMcgCZp3zezEwmRloLxF9/exec';
+
+    const rsvpService = new RsvpService(SCRIPT_URL);
+    const rsvpUI = new RsvpFormUI();
+
+    const app = new RsvpApp(rsvpService, rsvpUI);
+    app.init();
   </script>
 </body>
 </html>
