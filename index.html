@@ -33,8 +33,6 @@
 
   <!-- FLIP CARD: front = track + car + RSVP, back = event details -->
   <div class="flip" id="flip">
-  <div class="flip-inner" id="flipInner">
-
   <!-- FRONT -->
   <div class="flip-face flip-front" id="flipFront">
 
@@ -222,7 +220,7 @@
   <!-- /front -->
 
   <!-- BACK -->
-  <div class="flip-face flip-back" id="flipBack" aria-hidden="true" inert>
+  <div class="flip-face flip-back is-off" id="flipBack">
 
     <!-- EVENT DETAILS (on the back of the card) -->
 
@@ -422,7 +420,6 @@
   </div>
   <!-- /back -->
 
-  </div>
   </div>
   <!-- /flip -->
 
@@ -921,78 +918,99 @@
       /* =========================================
          FLIP CARD
          "View event details" turns the card over,
-         "Back to RSVP" turns it back
+         "Back to RSVP" turns it back.
+         Only one side is on screen at a time, and 3D is used only
+         while it turns, so the animated track never flickers.
       ========================================= */
 
-      const flip      = document.getElementById("flip");
-      const flipInner = document.getElementById("flipInner");
-      const frontFace = document.getElementById("flipFront");
-      const backFace  = document.getElementById("flipBack");
+      const flip       = document.getElementById("flip");
+      const frontFace  = document.getElementById("flipFront");
+      const backFace   = document.getElementById("flipBack");
       const detailsBtn = document.getElementById("detailsToggle");
       const backBtn    = document.getElementById("backToggle");
 
       let flipped = false;
+      let turning = false;
 
-      /* the card is as tall as the face that is showing */
+      function showSide() {
 
-      function fitFlipHeight() {
-
-        const face = flipped ? backFace : frontFace;
-
-        flipInner.style.height = face.offsetHeight + "px";
-
-      }
-
-      /* once the turn is done, the side facing away is collapsed so its
-         (taller) content doesn't add empty scroll space under the card */
-
-      let parkTimer = null;
-
-      function parkHiddenFace() {
-
-        (flipped ? frontFace : backFace).classList.add("is-parked");
-
-      }
-
-      function setFlipped(value) {
-
-        flipped = value;
-
-        clearTimeout(parkTimer);
-
-        frontFace.classList.remove("is-parked");
-        backFace.classList.remove("is-parked");
-
-        parkTimer = setTimeout(parkHiddenFace, reduceMotion ? 0 : 850);
-
-        flip.classList.toggle("is-flipped", flipped);
-
-        /* the hidden side can't be focused or read out */
-
-        frontFace.inert = flipped;
-        backFace.inert  = !flipped;
-
-        frontFace.setAttribute("aria-hidden", String(flipped));
-        backFace.setAttribute("aria-hidden", String(!flipped));
+        frontFace.classList.toggle("is-off", flipped);
+        backFace.classList.toggle("is-off", !flipped);
 
         detailsBtn.setAttribute("aria-expanded", String(flipped));
-
-        fitFlipHeight();
 
         /* bring the top of the card back into view */
 
         const top = flip.getBoundingClientRect().top;
 
         if (top < 0) {
-
-          window.scrollBy({
-            top: top - 12,
-            behavior: reduceMotion ? "auto" : "smooth"
-          });
-
+          window.scrollBy(0, top - 12);
         }
 
         (flipped ? backBtn : detailsBtn).focus({ preventScroll: true });
+
+      }
+
+      function setFlipped(value) {
+
+        if (turning || value === flipped) {
+          return;
+        }
+
+        flipped = value;
+
+        if (reduceMotion || typeof flip.animate !== "function") {
+
+          showSide();
+
+          return;
+
+        }
+
+        turning = true;
+
+        /* edge-on, swap the side, then turn the new side into view */
+
+        turnFrom(0, 90, "ease-in", () => {
+
+          showSide();
+
+          turnFrom(-90, 0, "ease-out", () => {
+            turning = false;
+          });
+
+        });
+
+      }
+
+      /* one half of the turn; "done" also runs if the browser cancels it,
+         so the button can never get stuck */
+
+      function turnFrom(fromDeg, toDeg, easing, done) {
+
+        const persp = "perspective(1600px) ";
+
+        const anim = flip.animate(
+          [
+            { transform: persp + "rotateY(" + fromDeg + "deg)" },
+            { transform: persp + "rotateY(" + toDeg + "deg)" }
+          ],
+          { duration: 260, easing: easing }
+        );
+
+        let finished = false;
+
+        function end() {
+
+          if (!finished) {
+            finished = true;
+            done();
+          }
+
+        }
+
+        anim.onfinish = end;
+        anim.oncancel = end;
 
       }
 
@@ -1007,24 +1025,6 @@
         }
 
       });
-
-      /* keep the height right when content changes
-         (fonts load, RSVP confirmation appears, window resizes) */
-
-      if (typeof ResizeObserver === "function") {
-
-        const ro = new ResizeObserver(fitFlipHeight);
-
-        ro.observe(frontFace);
-        ro.observe(backFace);
-
-      }
-
-      window.addEventListener("resize", fitFlipHeight);
-
-      window.addEventListener("load", fitFlipHeight);
-
-      fitFlipHeight();
 
 
       /* Watch the confirmation box (set by js/script.js) */

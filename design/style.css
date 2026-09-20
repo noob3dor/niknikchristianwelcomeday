@@ -1201,6 +1201,12 @@ p.subtitle {
 
   margin: 6px 0 20px;
 
+  /* own compositor layer: the card's pulsing glow can't repaint it */
+
+  isolation: isolate;
+
+  transform: translateZ(0);
+
   overflow: hidden;
 
   border: 1px solid #30343b;
@@ -1460,6 +1466,10 @@ p.subtitle {
     );
 
   transition: filter 0.25s ease;
+
+  /* keeps the shadowed car cached as one layer while it bobs */
+
+  will-change: transform;
 
   animation:
     carBob 2.6s ease-in-out 3.9s infinite;
@@ -2020,60 +2030,17 @@ h1 {
    Back:  event details
 ========================================= */
 
-.flip {
-  perspective: 1800px;
-}
-
-
-.flip-inner {
-  position: relative;
-
-  transform-style: preserve-3d;
-
-  transition:
-    transform 0.75s cubic-bezier(0.4, 0.1, 0.2, 1),
-    height 0.5s ease;
-}
-
-
-.flip.is-flipped .flip-inner {
-  transform: rotateY(180deg);
-}
-
+/* Only one side is shown at a time. The turn itself is a short
+   rotateY animation run by the script, so no permanent 3D layers
+   sit around the animated track. */
 
 .flip-face {
   display: flow-root;
-
-  width: 100%;
-
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
 }
 
 
-.flip-front {
-  position: relative;
-}
-
-
-.flip-back {
-  position: absolute;
-
-  top: 0;
-  left: 0;
-
-  transform: rotateY(180deg);
-}
-
-
-/* the side that faces away, after the turn */
-
-.flip-face.is-parked {
-  max-height: 0;
-
-  overflow: hidden;
-
-  visibility: hidden;
+.flip-face.is-off {
+  display: none;
 }
 
 
