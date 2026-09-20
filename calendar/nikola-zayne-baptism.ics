@@ -1,0 +1,26 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Nikola Zayne Invitation//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:nikola-zayne-baptism-20261108@invitation
+DTSTAMP:20260920T000000Z
+DTSTART:20261108T030000Z
+DTEND:20261108T070000Z
+SUMMARY:Nikola Zayne's Baptism Ceremony
+LOCATION:Sto. Tomas De Villanueva Parish Church\, 151 Evangelista Avenue\, Santolan\, Pasig City
+DESCRIPTION:Baptism ceremony at 11:00 AM at Sto. Tomas De Villanueva Parish Church. Reception at 1:00 PM - 3:00 PM at Jollibee Amang Santolan (Level 1 AD Center Square\, A. Rodriguez Street corner Evangelista Street\, Santolan). Attire: Any.
+STATUS:CONFIRMED
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Nikola Zayne's Baptism is tomorrow!
+TRIGGER:-P1D
+END:VALARM
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Nikola Zayne's Baptism starts in 3 hours (11:00 AM)
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+END:VCALENDAR

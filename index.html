@@ -7,12 +7,32 @@
 
   <title>You are Invited for Nikola Zayne's Baptism Ceremony</title>
 
+  <!-- Link preview (shows when the link is shared in Messenger, Viber, Gmail, etc.) -->
+  <meta name="description" content="Nov 8, 2026 - Sto. Tomas De Villanueva Parish Church, Pasig. Tap to see the details and RSVP.">
+  <meta name="theme-color" content="#e22828">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://noob3dor.github.io/niknikchristianwelcomeday/">
+  <meta property="og:image" content="https://noob3dor.github.io/niknikchristianwelcomeday/images/niknikcar.png">
+  <meta property="og:image:alt" content="Nikola Zayne's little racing champion car">
+  <meta property="og:title" content="You're invited! Nikola Zayne's Baptism 🏁">
+  <meta property="og:description" content="Nov 8, 2026 - Sto. Tomas De Villanueva Parish Church, Pasig. Tap to see the details and RSVP.">
+
+  <!-- Fonts: Barlow Condensed (headlines) + Barlow (body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:ital,wght@0,600;0,700;1,700;1,800;1,900&display=swap"
+    rel="stylesheet">
+
   <link rel="stylesheet" href="design/style.css">
 </head>
 
 <body>
 
   <div class="invite-card">
+
+  <!-- TOP: title + countdown -->
+  <div class="invite-top">
 
     <!-- BADGE -->
     <span class="badge">
@@ -31,6 +51,47 @@
       Join us as we celebrate the first major milestone and blessing
       of our Little Racing Champion!
     </p>
+
+
+    <!-- COUNTDOWN (F1 start lights) -->
+    <section class="countdown" aria-label="Countdown to the baptism ceremony">
+
+      <div class="start-lights" aria-hidden="true">
+        <i></i><i></i><i></i><i></i><i></i>
+      </div>
+
+      <p class="countdown-title" id="countdownTitle">
+        LIGHTS OUT IN
+      </p>
+
+      <div class="countdown-grid" id="countdown" role="timer">
+
+        <div class="cd-box">
+          <span class="cd-num" id="cdDays">--</span>
+          <span class="cd-unit">DAYS</span>
+        </div>
+
+        <div class="cd-box">
+          <span class="cd-num" id="cdHours">--</span>
+          <span class="cd-unit">HRS</span>
+        </div>
+
+        <div class="cd-box">
+          <span class="cd-num" id="cdMins">--</span>
+          <span class="cd-unit">MINS</span>
+        </div>
+
+        <div class="cd-box">
+          <span class="cd-num" id="cdSecs">--</span>
+          <span class="cd-unit">SECS</span>
+        </div>
+
+      </div>
+
+    </section>
+
+  </div>
+  <!-- /invite-top -->
 
 
     <!-- EVENT DETAILS -->
@@ -74,6 +135,27 @@
             November 08, 2026
           </strong>
 
+          <div class="detail-actions">
+
+            <a
+              class="detail-link"
+              href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Nikola+Zayne%27s+Baptism+Ceremony&amp;dates=20261108T030000Z%2F20261108T070000Z&amp;details=Baptism+ceremony+at+11%3A00+AM%2C+reception+at+1%3A00+PM.&amp;location=Sto.+Tomas+De+Villanueva+Parish+Church%2C+Santolan%2C+Pasig+City"
+              target="_blank"
+              rel="noopener"
+            >
+              📌 GOOGLE CALENDAR
+            </a>
+
+            <a
+              class="detail-link"
+              href="calendar/nikola-zayne-baptism.ics"
+              download="nikola-zayne-baptism.ics"
+            >
+              📥 IPHONE / OUTLOOK
+            </a>
+
+          </div>
+
         </div>
 
       </div>
@@ -84,7 +166,7 @@
       <div class="race-detail-item">
 
         <div class="detail-icon">
-          ⛪
+          🕊️
         </div>
 
         <div class="detail-content">
@@ -104,7 +186,7 @@
 
       <!-- CHURCH -->
 
-      <div class="race-detail-item">
+      <div class="race-detail-item long-detail">
 
         <div class="detail-icon">
           ⛪
@@ -117,12 +199,23 @@
           </span>
 
           <strong>
-            Sto. Tomas De Villanueva Parish Church
-            Santolan, Pasig City
-            Diocese of Pasig
-            151 Evangelista Avenue, Pasig
-            Metro Manila
+            <span class="place-name">Sto. Tomas De Villanueva Parish Church</span>
+            <span class="place-address">
+              Santolan, Pasig City<br>
+              Diocese of Pasig<br>
+              151 Evangelista Avenue, Pasig<br>
+              Metro Manila
+            </span>
           </strong>
+
+          <a
+            class="detail-link"
+            href="https://www.google.com/maps/search/?api=1&amp;query=Sto.+Tomas+De+Villanueva+Parish+Church+Santolan+Pasig"
+            target="_blank"
+            rel="noopener"
+          >
+            🗺️ GET DIRECTIONS
+          </a>
 
         </div>
 
@@ -154,7 +247,7 @@
 
       <!-- RECEPTION VENUE -->
 
-      <div class="race-detail-item">
+      <div class="race-detail-item long-detail">
 
         <div class="detail-icon">
           📍
@@ -167,11 +260,22 @@
           </span>
 
           <strong>
-            Jollibee Amang Santolan
-            LEVEL 1 AD CENTER SQUARE
-            A. Rodriguez Street Corner
-            Evangelista Street, Santolan
+            <span class="place-name">Jollibee Amang Santolan</span>
+            <span class="place-address">
+              LEVEL 1 AD CENTER SQUARE<br>
+              A. Rodriguez Street Corner<br>
+              Evangelista Street, Santolan
+            </span>
           </strong>
+
+          <a
+            class="detail-link"
+            href="https://www.google.com/maps/search/?api=1&amp;query=Jollibee+Amang+Santolan+Pasig"
+            target="_blank"
+            rel="noopener"
+          >
+            🗺️ GET DIRECTIONS
+          </a>
 
         </div>
 
@@ -203,6 +307,9 @@
     </section>
 
 
+  <!-- BOTTOM: RSVP + car -->
+  <div class="invite-bottom">
+
     <!-- RSVP -->
 
     <form
@@ -210,14 +317,25 @@
       id="rsvpForm"
     >
 
+      <div class="rsvp-head">
+        <span class="rsvp-title">RSVP</span>
+        <span class="rsvp-note">Let us know if you're joining the celebration.</span>
+      </div>
+
+
+      <label class="sr-only" for="name">Guest full name</label>
+
       <input
         type="text"
         id="name"
         name="name"
         placeholder="Guest / Pit Crew Full Name"
+        autocomplete="name"
         required
       >
 
+
+      <label class="sr-only" for="attendance">Attendance</label>
 
       <select
         id="attendance"
@@ -256,17 +374,40 @@
 
     <!-- CONFIRMATION -->
 
-    <div id="confirmation"></div>
+    <div id="confirmation" aria-live="polite"></div>
 
 
-    <!-- F1 CAR -->
+    <!-- RACE TRACK + F1 CAR (below the form, never covers text) -->
+    <!--
+      If the car looks like it is driving backwards, change
+      class="pit-lane" to class="pit-lane face-left"
+    -->
 
-    <img
-      src="images/niknikcar.png"
-      class="f1-car"
-      alt=""
-      aria-hidden="true"
+    <div
+      class="pit-lane"
+      id="pitLane"
+      role="button"
+      tabindex="0"
+      aria-label="Watch the race car take a victory lap"
+      title="Tap for a victory lap!"
     >
+
+      <span class="track-line"></span>
+
+      <span class="finish-line"></span>
+
+      <div class="car-run" id="carRun">
+        <img
+          src="images/niknikcar.png"
+          class="f1-car"
+          alt=""
+        >
+      </div>
+
+    </div>
+
+  </div>
+  <!-- /invite-bottom -->
 
   </div>
 
@@ -284,7 +425,7 @@
   </audio>
 
 
-  <!-- EXISTING RSVP JAVASCRIPT -->
+  <!-- EXISTING RSVP JAVASCRIPT (unchanged) -->
 
   <script src="js/script.js"></script>
 
@@ -359,6 +500,435 @@
       playVroom,
       { once: true }
     );
+
+  </script>
+
+
+  <!-- ANIMATIONS: start lights, countdown ticks, car lap, RSVP confetti
+       (visual only, does not touch the RSVP logic in js/script.js) -->
+
+  <script>
+
+    (function () {
+
+      const reduceMotion =
+        window.matchMedia(
+          "(prefers-reduced-motion: reduce)"
+        ).matches;
+
+
+      /* =========================================
+         START LIGHTS
+         Light up one by one, then LIGHTS OUT
+         (the car launches right after)
+      ========================================= */
+
+      const lights =
+        Array.from(
+          document.querySelectorAll(".start-lights i")
+        );
+
+      if (!reduceMotion) {
+
+        lights.forEach((light, index) => {
+
+          setTimeout(() => {
+            light.classList.add("on");
+          }, 500 + index * 260);
+
+        });
+
+        setTimeout(() => {
+
+          lights.forEach((light) => {
+            light.classList.remove("on");
+          });
+
+        }, 500 + lights.length * 260 + 500);
+
+      }
+
+
+      /* =========================================
+         COUNTDOWN (Nov 8, 2026, 11:00 AM PH time)
+      ========================================= */
+
+      const target =
+        new Date("2026-11-08T11:00:00+08:00").getTime();
+
+      const daysEl  = document.getElementById("cdDays");
+      const hoursEl = document.getElementById("cdHours");
+      const minsEl  = document.getElementById("cdMins");
+      const secsEl  = document.getElementById("cdSecs");
+      const gridEl  = document.getElementById("countdown");
+      const titleEl = document.getElementById("countdownTitle");
+
+      const pad =
+        (value) => String(value).padStart(2, "0");
+
+      function setNum(element, value) {
+
+        if (element.textContent === value) {
+          return;
+        }
+
+        element.textContent = value;
+
+        if (!reduceMotion) {
+
+          element.classList.remove("tick");
+
+          void element.offsetWidth;
+
+          element.classList.add("tick");
+
+        }
+
+      }
+
+      let timer = null;
+
+      function tick() {
+
+        const diff =
+          target - Date.now();
+
+        if (diff <= 0) {
+
+          titleEl.textContent =
+            "LIGHTS OUT! IT'S RACE DAY 🏁";
+
+          gridEl.style.display =
+            "none";
+
+          if (timer) {
+            clearInterval(timer);
+          }
+
+          return;
+
+        }
+
+        const totalSeconds =
+          Math.floor(diff / 1000);
+
+        setNum(daysEl,  pad(Math.floor(totalSeconds / 86400)));
+        setNum(hoursEl, pad(Math.floor((totalSeconds % 86400) / 3600)));
+        setNum(minsEl,  pad(Math.floor((totalSeconds % 3600) / 60)));
+        setNum(secsEl,  pad(totalSeconds % 60));
+
+      }
+
+      tick();
+
+      timer =
+        setInterval(tick, 1000);
+
+
+      /* =========================================
+         CAR VICTORY LAP
+         Tap / click the track (or press Enter)
+      ========================================= */
+
+      const pitLane   = document.getElementById("pitLane");
+      const carRun    = document.getElementById("carRun");
+      const trackLine = pitLane.querySelector(".track-line");
+
+      let lapping = false;
+
+      function playVroomAgain() {
+
+        const sound =
+          document.getElementById("vroomSound");
+
+        try {
+
+          sound.currentTime = 0;
+
+          const promise = sound.play();
+
+          if (promise && promise.catch) {
+            promise.catch(() => {});
+          }
+
+        } catch (error) {
+          /* ignore */
+        }
+
+      }
+
+      function driveLap(withSound) {
+
+        if (
+          reduceMotion ||
+          lapping ||
+          typeof carRun.animate !== "function"
+        ) {
+          return;
+        }
+
+        lapping = true;
+
+        const dir =
+          pitLane.classList.contains("face-left") ? -1 : 1;
+
+        const out  = "calc(50% + " + (dir * 115) + "%)";
+        const back = "calc(50% - " + (dir * 115) + "%)";
+
+        const lap =
+          carRun.animate(
+            [
+              { left: "50%", offset: 0, easing: "cubic-bezier(0.7, 0, 1, 0.6)" },
+              { left: out,   offset: 0.4 },
+              { left: back,  offset: 0.4001, easing: "cubic-bezier(0.12, 0.75, 0.2, 1)" },
+              { left: "50%", offset: 1 }
+            ],
+            { duration: 2200 }
+          );
+
+        lap.onfinish = () => {
+          lapping = false;
+        };
+
+        lap.oncancel = () => {
+          lapping = false;
+        };
+
+        /* road lines rush past as the car comes back in */
+
+        trackLine.animate(
+          [
+            { backgroundPosition: (dir * 440) + "px 0" },
+            { backgroundPosition: "0 0" }
+          ],
+          {
+            duration: 1300,
+            delay: 900,
+            easing: "cubic-bezier(0.12, 0.75, 0.2, 1)",
+            fill: "backwards"
+          }
+        );
+
+        /* speed streaks behind the car */
+
+        try {
+
+          carRun.animate(
+            [
+              { opacity: 0 },
+              { opacity: 0.9, offset: 0.08 },
+              { opacity: 0.9, offset: 0.4 },
+              { opacity: 0 }
+            ],
+            { duration: 2200, pseudoElement: "::before" }
+          );
+
+        } catch (error) {
+          /* older browsers: skip the streaks */
+        }
+
+        if (withSound) {
+          playVroomAgain();
+        }
+
+      }
+
+      pitLane.addEventListener("click", () => {
+        driveLap(true);
+      });
+
+      pitLane.addEventListener("keydown", (event) => {
+
+        if (event.key === "Enter" || event.key === " ") {
+
+          event.preventDefault();
+
+          driveLap(true);
+
+        }
+
+      });
+
+
+      /* =========================================
+         CONFETTI (fires when a guest says YES)
+      ========================================= */
+
+      function launchConfetti() {
+
+        if (reduceMotion) {
+          return;
+        }
+
+        const canvas =
+          document.createElement("canvas");
+
+        canvas.className = "confetti";
+
+        document.body.appendChild(canvas);
+
+        const ctx =
+          canvas.getContext("2d");
+
+        const dpr =
+          Math.min(window.devicePixelRatio || 1, 2);
+
+        function resize() {
+          canvas.width  = window.innerWidth  * dpr;
+          canvas.height = window.innerHeight * dpr;
+        }
+
+        resize();
+
+        const colors = [
+          "#e22828",
+          "#ff5a5a",
+          "#ffb000",
+          "#f39c12",
+          "#ffffff",
+          "#2ecc71"
+        ];
+
+        const pieces = [];
+
+        function burst(x, y, angle, spread, count) {
+
+          for (let i = 0; i < count; i++) {
+
+            const a =
+              angle + (Math.random() - 0.5) * spread;
+
+            const speed =
+              8 + Math.random() * 11;
+
+            pieces.push({
+              x: x,
+              y: y,
+              vx: Math.cos(a) * speed,
+              vy: Math.sin(a) * speed,
+              w: 6 + Math.random() * 7,
+              h: 4 + Math.random() * 6,
+              rot: Math.random() * Math.PI * 2,
+              vr: (Math.random() - 0.5) * 0.4,
+              color: colors[Math.floor(Math.random() * colors.length)],
+              flag: Math.random() < 0.08,
+              age: 0
+            });
+
+          }
+
+        }
+
+        const w = window.innerWidth;
+        const h = window.innerHeight;
+
+        /* two cannons from the bottom corners */
+
+        burst(0, h * 0.8, -Math.PI / 3, 0.9, 90);
+        burst(w, h * 0.8, (-2 * Math.PI) / 3, 0.9, 90);
+
+        /* second burst from the middle */
+
+        setTimeout(() => {
+          burst(w / 2, h * 0.55, -Math.PI / 2, 2.6, 80);
+        }, 350);
+
+        function frame() {
+
+          ctx.setTransform(1, 0, 0, 1, 0, 0);
+
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+          for (let i = pieces.length - 1; i >= 0; i--) {
+
+            const p = pieces[i];
+
+            p.age++;
+
+            p.vy += 0.28;
+
+            p.vx *= 0.992;
+
+            p.vy *= 0.992;
+
+            p.x += p.vx;
+
+            p.y += p.vy;
+
+            p.rot += p.vr;
+
+            if (p.y > h + 40 || p.age > 300) {
+              pieces.splice(i, 1);
+              continue;
+            }
+
+            ctx.setTransform(
+              dpr, 0, 0, dpr,
+              p.x * dpr, p.y * dpr
+            );
+
+            ctx.rotate(p.rot);
+
+            if (p.flag) {
+
+              ctx.font = "20px serif";
+
+              ctx.fillText("🏁", -10, 8);
+
+            } else {
+
+              ctx.fillStyle = p.color;
+
+              ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+
+            }
+
+          }
+
+          if (pieces.length > 0) {
+
+            requestAnimationFrame(frame);
+
+          } else {
+
+            canvas.remove();
+
+          }
+
+        }
+
+        requestAnimationFrame(frame);
+
+      }
+
+      /* Watch the confirmation box (set by js/script.js) */
+
+      const confirmation =
+        document.getElementById("confirmation");
+
+      let celebrated = false;
+
+      new MutationObserver(() => {
+
+        if (
+          !celebrated &&
+          confirmation.classList.contains("attending-msg")
+        ) {
+
+          celebrated = true;
+
+          launchConfetti();
+
+          driveLap(true);
+
+        }
+
+      }).observe(
+        confirmation,
+        { attributes: true, attributeFilter: ["class", "style"] }
+      );
+
+    })();
 
   </script>
 

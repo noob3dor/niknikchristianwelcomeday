@@ -2,9 +2,27 @@
   --bg-color: #0b0c10;
   --card-bg: #1a1c23;
   --accent-color: #e22828;
+  --accent-deep: #a81212;
   --secondary-accent: #f39c12;
+  --gold: #ffb000;
   --text-color: #ffffff;
   --subtext-color: #c5c6c7;
+  --panel: #101216;
+  --line: #292d33;
+
+  --font-display:
+    "Barlow Condensed",
+    "Arial Narrow",
+    "Arial Black",
+    Arial,
+    sans-serif;
+
+  --font-body:
+    "Barlow",
+    "Segoe UI",
+    Arial,
+    Helvetica,
+    sans-serif;
 }
 
 
@@ -19,11 +37,29 @@
 }
 
 
+/* Visually hidden (for accessible form labels) */
+
+.sr-only {
+  position: absolute;
+
+  width: 1px;
+  height: 1px;
+
+  overflow: hidden;
+
+  clip: rect(0, 0, 0, 0);
+
+  white-space: nowrap;
+}
+
+
 /* =========================================
    BODY
 ========================================= */
 
 body {
+  position: relative;
+
   min-height: 100vh;
 
   display: flex;
@@ -31,6 +67,8 @@ body {
   justify-content: center;
 
   padding: 30px 20px 100px;
+
+  overflow-x: hidden;
 
   background-color: var(--bg-color);
 
@@ -50,11 +88,41 @@ body {
 
   color: var(--text-color);
 
-  font-family:
-    "Segoe UI",
-    Arial,
-    Helvetica,
-    sans-serif;
+  font-family: var(--font-body);
+}
+
+
+/* Red glow + speed streaks behind the card */
+
+body::before {
+  content: "";
+
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 0;
+
+  pointer-events: none;
+
+  background:
+    radial-gradient(
+      ellipse 70% 45% at 50% 0%,
+      rgba(226, 40, 40, 0.22),
+      transparent 70%
+    ),
+    radial-gradient(
+      ellipse 60% 40% at 50% 100%,
+      rgba(243, 156, 18, 0.10),
+      transparent 70%
+    ),
+    repeating-linear-gradient(
+      -12deg,
+      transparent 0,
+      transparent 46px,
+      rgba(226, 40, 40, 0.05) 46px,
+      rgba(226, 40, 40, 0.05) 48px
+    );
 }
 
 
@@ -68,7 +136,7 @@ body {
   width: 100%;
   max-width: 480px;
 
-  padding: 30px;
+  padding: 34px 30px 30px;
 
   background:
     linear-gradient(
@@ -83,7 +151,9 @@ body {
   border-radius: 14px;
 
   box-shadow:
-    0 0 25px rgba(226, 40, 40, 0.4),
+    0 0 0 1px rgba(255, 255, 255, 0.04),
+    0 0 40px rgba(226, 40, 40, 0.42),
+    0 30px 60px rgba(0, 0, 0, 0.55),
     inset 0 0 15px rgba(0, 0, 0, 0.8);
 
   overflow: visible;
@@ -91,6 +161,25 @@ body {
   z-index: 10;
 
   text-align: center;
+
+  animation:
+    cardIn 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) backwards,
+    cardGlow 4s ease-in-out 1s infinite;
+}
+
+
+@keyframes cardIn {
+
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
 }
 
 
@@ -107,7 +196,7 @@ body {
   left: 0;
 
   width: 100%;
-  height: 12px;
+  height: 14px;
 
   background:
     linear-gradient(
@@ -131,13 +220,13 @@ body {
       #000 75%
     );
 
-  background-size: 16px 16px;
+  background-size: 14px 14px;
 
   background-position:
     0 0,
-    0 8px,
-    8px -8px,
-    -8px 0;
+    0 7px,
+    7px -7px,
+    -7px 0;
 
   background-color: #fff;
 
@@ -154,6 +243,7 @@ body {
 .badge,
 h1,
 .subtitle,
+.countdown,
 .race-details,
 .rsvp-form,
 #confirmation {
@@ -169,34 +259,42 @@ h1,
 .badge {
   display: inline-block;
 
-  background: var(--accent-color);
+  max-width: 100%;
+
+  background:
+    linear-gradient(
+      180deg,
+      #f03535 0%,
+      var(--accent-color) 100%
+    );
 
   color: #fff;
 
-  padding: 6px 16px;
+  padding: 7px 18px;
 
   border-radius: 4px;
 
-  font-family:
-    "Arial Black",
-    Arial,
-    sans-serif;
+  font-family: var(--font-display);
 
-  font-size: 0.78rem;
+  font-size: 0.92rem;
 
-  font-weight: 900;
+  font-weight: 700;
 
-  margin-top: 10px;
-  margin-bottom: 12px;
+  font-style: italic;
+
+  margin-top: 12px;
+  margin-bottom: 14px;
 
   text-transform: uppercase;
 
-  letter-spacing: 1.5px;
+  letter-spacing: 1.6px;
+
+  line-height: 1.2;
 
   transform: skew(-8deg);
 
   box-shadow:
-    2px 2px 0 #000;
+    3px 3px 0 #000;
 }
 
 
@@ -205,27 +303,27 @@ h1,
 ========================================= */
 
 h1 {
-  font-family:
-    "Arial Black",
-    Arial,
-    sans-serif;
+  font-family: var(--font-display);
 
-  font-size: 2.3rem;
+  font-size: 3.4rem;
 
-  margin-bottom: 5px;
+  margin-bottom: 8px;
 
   color: #fff;
 
   text-transform: uppercase;
 
-  letter-spacing: 1px;
+  letter-spacing: 0.5px;
 
   font-style: italic;
 
-  line-height: 1.1;
+  font-weight: 900;
+
+  line-height: 0.98;
 
   text-shadow:
-    2px 2px 0 var(--accent-color);
+    3px 3px 0 var(--accent-color),
+    0 0 26px rgba(226, 40, 40, 0.35);
 }
 
 
@@ -234,23 +332,184 @@ h1 {
 ========================================= */
 
 p.subtitle {
-  font-family:
-    "Segoe UI",
-    Arial,
-    Helvetica,
-    sans-serif;
+  font-family: var(--font-body);
 
   color: var(--subtext-color);
 
-  margin-bottom: 20px;
+  max-width: 34ch;
 
-  font-size: 0.95rem;
+  margin: 0 auto 22px;
+
+  font-size: 1rem;
 
   font-weight: 400;
 
-  line-height: 1.5;
+  line-height: 1.55;
 
   text-align: center;
+
+  text-wrap: balance;
+}
+
+
+/* =========================================
+   COUNTDOWN
+========================================= */
+
+.countdown {
+  margin: 0 0 22px;
+
+  padding: 14px 12px 14px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #15171c 0%,
+      #090a0d 100%
+    );
+
+  border: 1px solid #30343b;
+
+  border-radius: 10px;
+
+  box-shadow:
+    0 6px 18px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+
+/* The F1 start lights: the one animated moment on page load */
+
+.start-lights {
+  display: flex;
+
+  justify-content: center;
+
+  gap: 10px;
+
+  margin-bottom: 12px;
+
+  padding: 8px 14px;
+
+  width: max-content;
+  max-width: 100%;
+
+  margin-left: auto;
+  margin-right: auto;
+
+  background: #050506;
+
+  border: 1px solid #22252b;
+
+  border-radius: 999px;
+}
+
+
+.start-lights i {
+  display: block;
+
+  width: 16px;
+  height: 16px;
+
+  border-radius: 50%;
+
+  background: #2a1010;
+
+  box-shadow:
+    inset 0 2px 3px rgba(0, 0, 0, 0.7);
+
+  transition:
+    background 0.12s ease,
+    box-shadow 0.12s ease;
+}
+
+
+.start-lights i.on {
+  background: #ff2a2a;
+
+  box-shadow:
+    0 0 10px 2px rgba(255, 42, 42, 0.85),
+    0 0 22px 4px rgba(255, 42, 42, 0.45),
+    inset 0 -2px 4px rgba(120, 0, 0, 0.6);
+}
+
+
+.countdown-title {
+  margin-bottom: 10px;
+
+  color: var(--gold);
+
+  font-family: var(--font-display);
+
+  font-size: 1rem;
+
+  font-weight: 700;
+
+  font-style: italic;
+
+  letter-spacing: 2.5px;
+
+  line-height: 1;
+}
+
+
+.countdown-grid {
+  display: grid;
+
+  grid-template-columns: repeat(4, 1fr);
+
+  gap: 8px;
+}
+
+
+.cd-box {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  gap: 2px;
+
+  padding: 9px 4px 8px;
+
+  background: var(--panel);
+
+  border: 1px solid var(--line);
+
+  border-bottom: 3px solid var(--accent-color);
+
+  border-radius: 6px;
+}
+
+
+.cd-num {
+  font-family: var(--font-display);
+
+  font-size: 2.1rem;
+
+  font-weight: 800;
+
+  font-style: italic;
+
+  line-height: 1;
+
+  color: #fff;
+
+  font-variant-numeric: tabular-nums;
+}
+
+
+.cd-unit {
+  color: var(--gold);
+
+  font-family: var(--font-body);
+
+  font-size: 0.62rem;
+
+  font-weight: 700;
+
+  letter-spacing: 1.6px;
 }
 
 
@@ -261,9 +520,9 @@ p.subtitle {
 .race-details {
   position: relative;
 
-  margin: 20px 0 24px;
+  margin: 0 0 26px;
 
-  padding: 16px 14px 14px;
+  padding: 18px 14px 14px;
 
   background:
     linear-gradient(
@@ -319,13 +578,13 @@ p.subtitle {
   align-items: center;
   justify-content: center;
 
-  gap: 10px;
+  gap: 12px;
 
   margin-bottom: 15px;
 
   padding-bottom: 12px;
 
-  border-bottom: 1px solid #292d33;
+  border-bottom: 1px solid var(--line);
 }
 
 
@@ -334,18 +593,15 @@ p.subtitle {
 
   text-align: center;
 
-  color: #ffb000;
+  color: var(--gold);
 
-  font-family:
-    "Arial Black",
-    Arial,
-    sans-serif;
+  font-family: var(--font-body);
 
-  font-size: 9px;
+  font-size: 10px;
 
-  font-weight: 900;
+  font-weight: 800;
 
-  letter-spacing: 2.5px;
+  letter-spacing: 3px;
 
   line-height: 1;
 }
@@ -356,12 +612,9 @@ p.subtitle {
 
   color: #fff;
 
-  font-family:
-    "Arial Black",
-    Arial,
-    sans-serif;
+  font-family: var(--font-display);
 
-  font-size: 19px;
+  font-size: 1.9rem;
 
   font-style: italic;
 
@@ -369,14 +622,14 @@ p.subtitle {
 
   letter-spacing: 0.8px;
 
-  line-height: 1.1;
+  line-height: 1;
 
   text-align: center;
 }
 
 
 .checkered-mini {
-  font-size: 18px;
+  font-size: 20px;
 }
 
 
@@ -395,9 +648,9 @@ p.subtitle {
 
   padding: 14px;
 
-  background: #101216;
+  background: var(--panel);
 
-  border: 1px solid #292d33;
+  border: 1px solid var(--line);
 
   border-left: 4px solid #e10600;
 
@@ -405,7 +658,8 @@ p.subtitle {
 
   transition:
     transform 0.2s ease,
-    border-color 0.2s ease;
+    border-color 0.2s ease,
+    background 0.2s ease;
 }
 
 
@@ -417,7 +671,9 @@ p.subtitle {
 .race-detail-item:hover {
   transform: translateX(3px);
 
-  border-left-color: #ffb000;
+  border-left-color: var(--gold);
+
+  background: #14171c;
 }
 
 
@@ -426,23 +682,28 @@ p.subtitle {
 ========================================= */
 
 .detail-icon {
-  flex: 0 0 34px;
+  flex: 0 0 38px;
 
-  width: 34px;
-  height: 34px;
+  width: 38px;
+  height: 38px;
 
   display: flex;
 
   align-items: center;
   justify-content: center;
 
-  background: #1b1e24;
+  background:
+    linear-gradient(
+      145deg,
+      #23262e,
+      #16181d
+    );
 
   border: 1px solid #363a42;
 
-  border-radius: 6px;
+  border-radius: 8px;
 
-  font-size: 17px;
+  font-size: 18px;
 }
 
 
@@ -461,25 +722,22 @@ p.subtitle {
 
   align-items: center;
 
-  gap: 4px;
+  gap: 5px;
 
   text-align: center;
 }
 
 
 .detail-label {
-  color: #ffb000;
+  color: var(--gold);
 
-  font-family:
-    "Segoe UI",
-    Arial,
-    sans-serif;
+  font-family: var(--font-body);
 
-  font-size: 10px;
+  font-size: 10.5px;
 
   font-weight: 800;
 
-  letter-spacing: 1.2px;
+  letter-spacing: 1.6px;
 
   line-height: 1.2;
 
@@ -492,21 +750,17 @@ p.subtitle {
 
   color: #f4f4f4;
 
-  font-family:
-    "Segoe UI",
-    Arial,
-    Helvetica,
-    sans-serif;
+  font-family: var(--font-body);
 
-  font-size: 14px;
+  font-size: 15px;
 
-  line-height: 1.6;
+  line-height: 1.5;
 
   font-weight: 600;
 
   text-align: center;
 
-  text-wrap: pretty;
+  text-wrap: balance;
 }
 
 
@@ -515,22 +769,100 @@ p.subtitle {
 ========================================= */
 
 /*
-   These are the long multi-line details:
-   - CHURCH
-   - VICTORY PARTY PADDOCK
+   CHURCH and VICTORY PARTY PADDOCK:
+   bold place name first, softer address below it.
 */
 
 .race-detail-item.long-detail
 .detail-content strong {
-  text-align: justify;
+  display: flex;
 
-  text-align-last: center;
+  flex-direction: column;
+
+  align-items: center;
+
+  gap: 4px;
+}
+
+
+.place-name {
+  color: #fff;
+
+  font-family: var(--font-display);
+
+  font-size: 1.2rem;
+
+  font-weight: 700;
+
+  font-style: italic;
+
+  line-height: 1.15;
+
+  letter-spacing: 0.3px;
+}
+
+
+.place-address {
+  color: var(--subtext-color);
+
+  font-size: 13px;
+
+  font-weight: 500;
 
   line-height: 1.55;
+}
 
-  hyphens: auto;
 
-  overflow-wrap: break-word;
+/* =========================================
+   SMALL ACTION LINKS (directions / calendar)
+========================================= */
+
+.detail-link {
+  display: inline-block;
+
+  margin-top: 4px;
+
+  padding: 6px 14px;
+
+  border: 1px solid rgba(255, 176, 0, 0.55);
+
+  border-radius: 999px;
+
+  color: var(--gold);
+
+  font-family: var(--font-body);
+
+  font-size: 10.5px;
+
+  font-weight: 800;
+
+  letter-spacing: 1.2px;
+
+  text-decoration: none;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+
+.detail-link:hover {
+  background: var(--gold);
+
+  border-color: var(--gold);
+
+  color: #111;
+}
+
+
+.detail-link:focus-visible,
+.rsvp-form input:focus-visible,
+.rsvp-form select:focus-visible,
+.rsvp-form button:focus-visible {
+  outline: 2px solid var(--gold);
+
+  outline-offset: 2px;
 }
 
 
@@ -538,12 +870,54 @@ p.subtitle {
    RSVP FORM
 ========================================= */
 
+.rsvp-head {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  gap: 4px;
+
+  margin-bottom: 16px;
+}
+
+
+.rsvp-title {
+  color: #fff;
+
+  font-family: var(--font-display);
+
+  font-size: 1.7rem;
+
+  font-weight: 900;
+
+  font-style: italic;
+
+  letter-spacing: 3px;
+
+  line-height: 1;
+
+  text-shadow:
+    2px 2px 0 var(--accent-color);
+}
+
+
+.rsvp-note {
+  color: var(--subtext-color);
+
+  font-size: 0.88rem;
+
+  line-height: 1.4;
+}
+
+
 .rsvp-form input,
 .rsvp-form select,
 .rsvp-form button {
   width: 100%;
 
-  padding: 14px;
+  padding: 14px 16px;
 
   margin-bottom: 14px;
 
@@ -555,15 +929,20 @@ p.subtitle {
 
   color: #fff;
 
-  font-family:
-    "Segoe UI",
-    Arial,
-    Helvetica,
-    sans-serif;
+  font-family: var(--font-body);
 
-  font-size: 0.95rem;
+  font-size: 1rem;
 
   outline: none;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+
+.rsvp-form input::placeholder {
+  color: #8b8e94;
 }
 
 
@@ -573,12 +952,10 @@ p.subtitle {
 
 .rsvp-form input:focus,
 .rsvp-form select:focus {
-  border-color:
-    var(--secondary-accent);
+  border-color: var(--secondary-accent);
 
   box-shadow:
-    0 0 8px
-    rgba(243, 156, 18, 0.2);
+    0 0 0 3px rgba(243, 156, 18, 0.18);
 }
 
 
@@ -588,6 +965,25 @@ p.subtitle {
 
 .rsvp-form select {
   cursor: pointer;
+
+  appearance: none;
+  -webkit-appearance: none;
+
+  padding-right: 44px;
+
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='9' viewBox='0 0 14 9'%3E%3Cpath d='M1 1l6 6 6-6' fill='none' stroke='%23ffb000' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+
+  background-repeat: no-repeat;
+
+  background-position: right 16px center;
+}
+
+
+.rsvp-form select option {
+  background: #14161b;
+
+  color: #fff;
 }
 
 
@@ -596,39 +992,79 @@ p.subtitle {
 ========================================= */
 
 .rsvp-form button {
-  font-family:
-    "Arial Black",
-    Arial,
-    sans-serif;
+  position: relative;
+
+  overflow: hidden;
+
+  margin-bottom: 6px;
+
+  font-family: var(--font-display);
 
   background:
     linear-gradient(
       180deg,
       #e22828 0%,
-      #a81212 100%
+      var(--accent-deep) 100%
     );
 
   color: #fff;
 
-  font-size: 1.05rem;
+  font-size: 1.35rem;
 
-  font-weight: 900;
+  font-weight: 800;
+
+  font-style: italic;
 
   text-transform: uppercase;
 
-  letter-spacing: 0.8px;
+  letter-spacing: 1.2px;
 
   border: none;
 
   cursor: pointer;
 
   transition:
-    all 0.2s ease;
+    background 0.2s ease,
+    box-shadow 0.1s ease,
+    transform 0.1s ease;
 
   transform: skew(-5deg);
 
   box-shadow:
-    0 4px 0 #610b0b;
+    0 4px 0 #610b0b,
+    0 10px 22px rgba(226, 40, 40, 0.35);
+}
+
+
+/* Light sweep across the button on hover */
+
+.rsvp-form button::after {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: -60%;
+
+  width: 40%;
+  height: 100%;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.3),
+      transparent
+    );
+
+  transform: skewX(-20deg);
+
+  transition: left 0.6s ease;
+}
+
+
+.rsvp-form button:hover::after {
+  left: 130%;
 }
 
 
@@ -645,7 +1081,8 @@ p.subtitle {
     );
 
   box-shadow:
-    0 2px 0 #610b0b;
+    0 2px 0 #610b0b,
+    0 8px 18px rgba(226, 40, 40, 0.35);
 
   transform:
     skew(-5deg)
@@ -674,22 +1111,53 @@ p.subtitle {
 #confirmation {
   display: none;
 
-  font-family:
-    "Arial Black",
-    Arial,
-    sans-serif;
+  margin-top: 6px;
 
-  font-size: 1.15rem;
+  padding: 16px 14px;
 
-  margin-top: 15px;
+  background: var(--panel);
+
+  border: 1px solid var(--line);
+
+  border-left: 4px solid var(--gold);
+
+  border-radius: 8px;
+
+  font-family: var(--font-display);
+
+  font-size: 1.45rem;
+
+  font-weight: 800;
+
+  font-style: italic;
 
   letter-spacing: 0.8px;
 
   text-transform: uppercase;
 
-  line-height: 1.4;
+  line-height: 1.25;
 
   text-align: center;
+
+  text-wrap: balance;
+
+  animation:
+    confirmIn 0.5s cubic-bezier(0.2, 1.2, 0.3, 1);
+}
+
+
+@keyframes confirmIn {
+
+  from {
+    opacity: 0;
+    transform: scale(0.92) translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+
 }
 
 
@@ -697,13 +1165,22 @@ p.subtitle {
    RSVP STATUS
 ========================================= */
 
+#confirmation.attending-msg,
 .attending-msg {
   color: #2ecc71;
+
+  border-left-color: #2ecc71;
+
+  box-shadow:
+    0 0 22px rgba(46, 204, 113, 0.18);
 }
 
 
+#confirmation.declined-msg,
 .declined-msg {
   color: #f39c12;
+
+  border-left-color: #f39c12;
 }
 
 
@@ -711,42 +1188,316 @@ p.subtitle {
    F1 CAR
 ========================================= */
 
-.f1-car {
+.pit-lane {
+  --car-dir: 1;
+  --car-h: 62px;
+
+  position: relative;
+
+  z-index: 30;
+
+  height: 88px;
+
+  margin-top: 18px;
+
+  overflow: hidden;
+
+  border: 1px solid #30343b;
+
+  border-radius: 8px;
+
+  background:
+    linear-gradient(
+      180deg,
+      #1b1d23 0%,
+      #0d0e12 100%
+    );
+
+  box-shadow:
+    inset 0 0 18px rgba(0, 0, 0, 0.7),
+    0 6px 16px rgba(0, 0, 0, 0.35);
+
+  cursor: pointer;
+
+  -webkit-tap-highlight-color: transparent;
+}
+
+
+/* car image faces LEFT? add class "face-left" in the HTML */
+
+.pit-lane.face-left {
+  --car-dir: -1;
+}
+
+
+.pit-lane:focus-visible {
+  outline: 2px solid var(--gold);
+
+  outline-offset: 2px;
+}
+
+
+/* red and white kerbs along the track */
+
+.pit-lane::before,
+.pit-lane::after {
+  content: "";
+
   position: absolute;
 
-  width: 500px;
+  left: 0;
+  right: 0;
 
-  right: -150px;
+  height: 6px;
 
-  bottom: -108px;
+  z-index: 1;
 
-  z-index: 100;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      var(--accent-color) 0,
+      var(--accent-color) 14px,
+      #fff 14px,
+      #fff 28px
+    );
+}
 
-  pointer-events: none;
 
-  transform: rotate(-2deg);
+.pit-lane::before {
+  top: 0;
+}
+
+
+.pit-lane::after {
+  bottom: 0;
+}
+
+
+/* dashed road line: rushes past while the car arrives */
+
+.track-line {
+  position: absolute;
+
+  left: 0;
+  right: 0;
+
+  top: 50%;
+
+  height: 3px;
+
+  margin-top: -1.5px;
+
+  background:
+    repeating-linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.5) 0,
+      rgba(255, 255, 255, 0.5) 22px,
+      transparent 22px,
+      transparent 44px
+    );
+
+  animation:
+    trackRun 1.6s cubic-bezier(0.12, 0.75, 0.2, 1) 2.3s backwards;
+}
+
+
+@keyframes trackRun {
+
+  from {
+    background-position:
+      calc(var(--car-dir) * 440px)
+      0;
+  }
+
+  to {
+    background-position: 0 0;
+  }
+
+}
+
+
+.finish-line {
+  position: absolute;
+
+  top: 6px;
+  bottom: 6px;
+
+  right: 14px;
+
+  width: 16px;
+
+  border-radius: 2px;
+
+  opacity: 0.9;
+
+  background:
+    conic-gradient(
+      #000 25%,
+      #fff 0 50%,
+      #000 0 75%,
+      #fff 0
+    )
+    0 0 / 8px 8px;
+}
+
+
+.pit-lane.face-left .finish-line {
+  right: auto;
+
+  left: 14px;
+}
+
+
+/* the car: drives in after LIGHTS OUT, then idles */
+
+.car-run {
+  position: absolute;
+
+  top: 50%;
+  left: 50%;
+
+  z-index: 2;
+
+  transform: translate(-50%, -50%);
+
+  animation:
+    carDrive 1.6s cubic-bezier(0.12, 0.75, 0.2, 1) 2.3s backwards;
+}
+
+
+@keyframes carDrive {
+
+  from {
+    left: calc(50% - var(--car-dir) * 115%);
+  }
+
+  to {
+    left: 50%;
+  }
+
+}
+
+
+/* speed streaks behind the car while it arrives */
+
+.car-run::before {
+  content: "";
+
+  position: absolute;
+
+  top: 50%;
+  right: 100%;
+
+  width: 140px;
+  height: 34px;
+
+  margin-top: -17px;
+
+  opacity: 0;
+
+  background:
+    repeating-linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.55) 0,
+      rgba(255, 255, 255, 0.55) 2px,
+      transparent 2px,
+      transparent 8px
+    );
+
+  -webkit-mask-image:
+    linear-gradient(90deg, transparent, #000);
+
+  mask-image:
+    linear-gradient(90deg, transparent, #000);
+
+  animation:
+    trailFade 1.6s ease-out 2.3s backwards;
+}
+
+
+.pit-lane.face-left .car-run::before {
+  right: auto;
+
+  left: 100%;
+
+  -webkit-mask-image:
+    linear-gradient(270deg, transparent, #000);
+
+  mask-image:
+    linear-gradient(270deg, transparent, #000);
+}
+
+
+@keyframes trailFade {
+
+  from {
+    opacity: 0.9;
+  }
+
+  to {
+    opacity: 0;
+  }
+
+}
+
+
+.f1-car {
+  display: block;
+
+  height: var(--car-h);
+
+  width: auto;
+
+  max-width: 240px;
+
+  object-fit: contain;
 
   filter:
     drop-shadow(
-      0 10px 10px
-      rgba(0, 0, 0, 0.65)
+      0 6px 6px
+      rgba(0, 0, 0, 0.6)
     );
 
-  transition:
-    transform 0.25s ease,
-    width 0.25s ease;
+  transition: filter 0.25s ease;
+
+  animation:
+    carBob 2.6s ease-in-out 3.9s infinite;
 }
+
+
+.pit-lane:hover .f1-car {
+  filter:
+    drop-shadow(
+      0 6px 6px
+      rgba(0, 0, 0, 0.6)
+    )
+    drop-shadow(
+      0 0 10px
+      rgba(226, 40, 40, 0.55)
+    );
+}
+
+
+@keyframes carBob {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-2px);
+  }
+
+}
+
+
 
 
 /* =========================================
    F1 CAR HOVER
 ========================================= */
 
-.invite-card:hover .f1-car {
-  transform:
-    rotate(-2deg)
-    translateY(-3px);
-}
 
 
 /* =========================================
@@ -766,16 +1517,14 @@ p.subtitle {
   .invite-card {
     max-width: 450px;
 
-    padding: 27px;
+    padding: 30px 26px 27px;
   }
 
 
-  .f1-car {
-    width: 270px;
+  .pit-lane {
+    --car-h: 58px;
 
-    right: -105px;
-
-    bottom: -70px;
+    height: 84px;
   }
 }
 
@@ -800,107 +1549,118 @@ p.subtitle {
     margin-top: 15px;
 
     padding:
-      25px
-      18px;
+      28px
+      16px
+      22px;
 
     border-width: 2px;
   }
 
 
   h1 {
-    font-size: 1.9rem;
+    font-size: 2.7rem;
   }
 
 
   .badge {
-    font-size: 0.65rem;
+    font-size: 0.78rem;
 
     padding:
       6px
-      10px;
+      12px;
 
     letter-spacing: 1px;
   }
 
 
   p.subtitle {
-    font-size: 0.85rem;
+    font-size: 0.92rem;
+  }
+
+
+  .countdown {
+    padding: 12px 8px;
+  }
+
+
+  .cd-num {
+    font-size: 1.8rem;
   }
 
 
   .race-details {
-    margin:
-      18px
-      0
-      22px;
+    margin: 0 0 22px;
 
     padding:
-      15px
+      16px
       10px
       10px;
   }
 
 
   .race-details-header h2 {
-    font-size: 18px;
+    font-size: 1.65rem;
   }
 
 
   .race-detail-item {
     gap: 10px;
 
-    padding: 11px 10px;
+    padding: 12px 10px;
   }
 
 
   .detail-icon {
-    flex-basis: 31px;
+    flex-basis: 33px;
 
-    width: 31px;
-    height: 31px;
+    width: 33px;
+    height: 33px;
 
-    font-size: 15px;
+    font-size: 16px;
   }
 
 
   .detail-content {
-    gap: 3px;
+    gap: 4px;
   }
 
 
   .detail-content strong {
-    font-size: 13px;
+    font-size: 14px;
 
-    line-height: 1.55;
-  }
-
-
-  .race-detail-item.long-detail
-  .detail-content strong {
     line-height: 1.5;
+  }
 
-    text-align: justify;
 
-    text-align-last: center;
+  .place-name {
+    font-size: 1.1rem;
+  }
+
+
+  .place-address {
+    font-size: 12.5px;
   }
 
 
   .detail-label {
-    font-size: 9px;
+    font-size: 10px;
   }
 
 
   .rsvp-form button {
-    font-size: 0.95rem;
+    font-size: 1.2rem;
   }
 
 
-  .f1-car {
-    width: 225px;
+  #confirmation {
+    font-size: 1.25rem;
+  }
 
-    right: -75px;
 
-    bottom: -60px;
+  .pit-lane {
+    --car-h: 54px;
+
+    height: 82px;
   }
 }
 
@@ -919,50 +1679,411 @@ p.subtitle {
 
   .invite-card {
     padding:
-      22px
-      14px;
+      26px
+      12px
+      20px;
   }
 
 
   h1 {
-    font-size: 1.65rem;
+    font-size: 2.3rem;
   }
 
 
   .badge {
-    font-size: 0.58rem;
+    font-size: 0.68rem;
 
     letter-spacing: 0.5px;
   }
 
 
+  .start-lights {
+    gap: 7px;
+  }
+
+
+  .start-lights i {
+    width: 14px;
+    height: 14px;
+  }
+
+
+  .cd-num {
+    font-size: 1.55rem;
+  }
+
+
   .race-details-header h2 {
-    font-size: 16px;
+    font-size: 1.45rem;
   }
 
 
   .detail-content strong {
-    font-size: 12.5px;
+    font-size: 13px;
 
     line-height: 1.5;
   }
 
 
-  .race-detail-item.long-detail
-  .detail-content strong {
-    line-height: 1.45;
-
-    text-align: justify;
-
-    text-align-last: center;
+  .place-name {
+    font-size: 1.02rem;
   }
 
 
-  .f1-car {
-    width: 195px;
+  .pit-lane {
+    --car-h: 48px;
 
-    right: -65px;
-
-    bottom: -52px;
+    height: 76px;
   }
+}
+
+
+
+/* =========================================
+   DESKTOP / LANDSCAPE
+   Two columns: title + RSVP on the left,
+   event details on the right.
+========================================= */
+
+@media (min-width: 900px) {
+
+  body {
+    padding:
+      40px
+      32px
+      110px;
+  }
+
+
+  .invite-card {
+    max-width: 1040px;
+
+    display: grid;
+
+    grid-template-columns:
+      minmax(0, 1fr)
+      minmax(0, 1fr);
+
+    grid-template-rows:
+      auto
+      1fr;
+
+    grid-template-areas:
+      "top details"
+      "bottom details";
+
+    column-gap: 36px;
+
+    padding: 46px 44px 30px;
+  }
+
+
+  .invite-top {
+    grid-area: top;
+  }
+
+
+  .invite-bottom {
+    grid-area: bottom;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 18px;
+  }
+
+
+  .pit-lane {
+    --car-h: 74px;
+
+    height: 104px;
+
+    margin-top: auto;
+  }
+
+
+  .race-details {
+    grid-area: details;
+
+    display: flex;
+
+    flex-direction: column;
+
+    margin: 0;
+
+    padding: 20px 16px 16px;
+  }
+
+
+  .race-details .race-detail-item {
+    flex: 1;
+  }
+
+
+  h1 {
+    font-size: 4.3rem;
+  }
+
+
+  .badge {
+    font-size: 1rem;
+  }
+
+
+  p.subtitle {
+    font-size: 1.08rem;
+  }
+
+
+  .cd-num {
+    font-size: 2.4rem;
+  }
+
+}
+
+
+/* =========================================
+   ANIMATIONS
+========================================= */
+
+/* card: slow red glow pulse */
+
+@keyframes cardGlow {
+
+  0%,
+  100% {
+    box-shadow:
+      0 0 0 1px rgba(255, 255, 255, 0.04),
+      0 0 40px rgba(226, 40, 40, 0.42),
+      0 30px 60px rgba(0, 0, 0, 0.55),
+      inset 0 0 15px rgba(0, 0, 0, 0.8);
+  }
+
+  50% {
+    box-shadow:
+      0 0 0 1px rgba(255, 255, 255, 0.04),
+      0 0 64px rgba(226, 40, 40, 0.72),
+      0 30px 60px rgba(0, 0, 0, 0.55),
+      inset 0 0 15px rgba(0, 0, 0, 0.8);
+  }
+
+}
+
+
+/* checkered strip slowly marches */
+
+.invite-card::before {
+  animation:
+    checkerMarch 2.4s linear infinite;
+}
+
+
+@keyframes checkerMarch {
+
+  from {
+    background-position:
+      0 0,
+      0 7px,
+      7px -7px,
+      -7px 0;
+  }
+
+  to {
+    background-position:
+      14px 0,
+      14px 7px,
+      21px -7px,
+      7px 0;
+  }
+
+}
+
+
+/* title glow */
+
+h1 {
+  animation:
+    titleGlow 3.6s ease-in-out 1s infinite;
+}
+
+
+@keyframes titleGlow {
+
+  0%,
+  100% {
+    text-shadow:
+      3px 3px 0 var(--accent-color),
+      0 0 26px rgba(226, 40, 40, 0.35);
+  }
+
+  50% {
+    text-shadow:
+      3px 3px 0 var(--accent-color),
+      0 0 44px rgba(255, 60, 60, 0.75);
+  }
+
+}
+
+
+/* badge: shine sweeps across every few seconds */
+
+.badge {
+  overflow: hidden;
+}
+
+
+.badge::after {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: -80%;
+
+  width: 50%;
+  height: 100%;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.55),
+      transparent
+    );
+
+  transform: skewX(-20deg);
+
+  animation:
+    badgeShine 4.5s ease-in-out 1.5s infinite;
+}
+
+
+@keyframes badgeShine {
+
+  0%,
+  55% {
+    left: -80%;
+  }
+
+  100% {
+    left: 150%;
+  }
+
+}
+
+
+/* countdown boxes pop in, numbers flip on every tick */
+
+.cd-box {
+  animation:
+    popIn 0.5s cubic-bezier(0.2, 1.3, 0.3, 1) backwards;
+}
+
+
+.cd-box:nth-child(1) { animation-delay: 0.50s; }
+.cd-box:nth-child(2) { animation-delay: 0.58s; }
+.cd-box:nth-child(3) { animation-delay: 0.66s; }
+.cd-box:nth-child(4) { animation-delay: 0.74s; }
+
+
+@keyframes popIn {
+
+  from {
+    opacity: 0;
+    transform: scale(0.7);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+}
+
+
+.cd-num.tick {
+  animation:
+    tickIn 0.35s ease-out;
+}
+
+
+@keyframes tickIn {
+
+  from {
+    opacity: 0.2;
+    transform: translateY(-35%) scale(0.9);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+
+}
+
+
+/* event details slide in one by one */
+
+.race-detail-item {
+  animation:
+    itemIn 0.6s cubic-bezier(0.2, 0.8, 0.2, 1)
+    calc(0.45s + var(--i, 0) * 0.09s)
+    backwards;
+}
+
+
+.race-details .race-detail-item:nth-child(2) { --i: 0; }
+.race-details .race-detail-item:nth-child(3) { --i: 1; }
+.race-details .race-detail-item:nth-child(4) { --i: 2; }
+.race-details .race-detail-item:nth-child(5) { --i: 3; }
+.race-details .race-detail-item:nth-child(6) { --i: 4; }
+.race-details .race-detail-item:nth-child(7) { --i: 5; }
+
+
+@keyframes itemIn {
+
+  from {
+    opacity: 0;
+    transform: translateX(-26px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+
+}
+
+
+/* confetti canvas (created by the script when a guest says YES) */
+
+.confetti {
+  position: fixed;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  z-index: 9999;
+
+  pointer-events: none;
+}
+
+
+/* =========================================
+   REDUCED MOTION
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+
+    transition: none !important;
+  }
+
 }
