@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Little Champion's Christening</title>
+
+  <!-- External CSS -->
+  <link rel="stylesheet" href="design/style.css">
+</head>
+
+
+<body>
+
+  <!-- =========================================
+       INVITATION CARD
+  ========================================== -->
+
+  <div class="invite-card">
+
+
+    <!-- =====================================
+         TOP CHECKERED FLAG
+    ====================================== -->
+
+    <div class="checker-top"></div>
+
+
+    <!-- =====================================
+         BADGE
+    ====================================== -->
+
+    <span class="badge">
+      🏆 NIKOLA ZAYNE L. TABUZO • CHRISTENING
+    </span>
+
+
+    <!-- =====================================
+         MAIN TITLE
+    ====================================== -->
+
+    <h1>
+      OUR LITTLE CHAMPION
+    </h1>
+
+
+    <!-- =====================================
+         SUBTITLE
+    ====================================== -->
+
+    <p class="subtitle">
+      Join us as we celebrate the first major milestone and blessing
+      of our Little Racing Champion!
+    </p>
+
+
+    <!-- =====================================
+         EVENT DETAILS
+    ====================================== -->
+
+    <div class="event-details">
+
+
+      <div class="detail-item">
+
+        <strong>Date:</strong>
+
+        November 08, 2026
+
+      </div>
+
+
+      <div class="detail-item">
+
+        <strong>Baptism Ceremony:</strong>
+
+        01:00 PM - 03:00 PM
+
+      </div>
+
+
+      <div class="detail-item">
+
+        <strong>Victory Party (Paddock):</strong>
+
+        LEVEL 1 AD CENTER SQUARE A. RODRIGUEZ STREET
+        CORNER EVANGELISTA STREET SANTOLAN
+
+      </div>
+
+
+    </div>
+
+
+    <!-- =====================================
+         RSVP FORM
+    ====================================== -->
+
+    <form
+      class="rsvp-form"
+      id="rsvpForm"
+    >
+
+
+      <!-- NAME -->
+
+      <input
+        type="text"
+        id="name"
+        name="name"
+        placeholder="Guest / Pit Crew Full Name"
+        required
+      >
+
+
+      <!-- ATTENDANCE -->
+
+      <select
+        id="attendance"
+        name="attendance"
+        required
+      >
+
+        <option
+          value=""
+          disabled
+          selected
+        >
+          Will you join the victory lap?
+        </option>
+
+
+        <option value="Yes, I will be there!">
+          🏁 YES! Count me in for the celebration
+        </option>
+
+
+        <option value="Sorry, I can't make it">
+          ❌ NO - Out of the Pit Lane
+        </option>
+
+
+      </select>
+
+
+      <!-- SUBMIT -->
+
+      <button
+        type="submit"
+        id="submitBtn"
+      >
+        CLAIM VIP CHAMPION PASS 🏎️
+      </button>
+
+
+    </form>
+
+
+    <!-- =====================================
+         CONFIRMATION
+    ====================================== -->
+
+    <div id="confirmation"></div>
+
+
+    <!-- =====================================
+         F1 CAR
+         
+         IMPORTANT:
+         Put your F1 image here:
+         
+         images/f1-car.png
+    ====================================== -->
+
+    <img
+      src="images/niknikcar.png"
+      class="f1-car"
+      alt=""
+      aria-hidden="true"
+    >
+
+
+  </div>
+
+
+  <!-- =========================================
+       JAVASCRIPT
+  ========================================== -->
+
+  <script src="js/script.js"></script>
+
+</body>
+
+</html>
