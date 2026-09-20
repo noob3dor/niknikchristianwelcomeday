@@ -31,7 +31,14 @@
 
   <div class="invite-card">
 
-  <!-- TOP: title + countdown -->
+  <!-- FLIP CARD: front = track + car + RSVP, back = event details -->
+  <div class="flip" id="flip">
+  <div class="flip-inner" id="flipInner">
+
+  <!-- FRONT -->
+  <div class="flip-face flip-front" id="flipFront">
+
+  <!-- TOP: title -->
   <div class="invite-top">
 
     <!-- BADGE -->
@@ -52,6 +59,124 @@
       of our Little Racing Champion!
     </p>
 
+
+  </div>
+  <!-- /invite-top -->
+
+  <!-- RACE TRACK + CAR + RSVP + DETAILS BUTTON -->
+  <div class="invite-bottom">
+
+    <!-- RACE TRACK + F1 CAR (first thing guests see, above the form) -->
+    <!--
+      If the car looks like it is driving backwards, change
+      class="pit-lane" to class="pit-lane face-left"
+    -->
+
+    <div
+      class="pit-lane"
+      id="pitLane"
+      role="button"
+      tabindex="0"
+      aria-label="Watch the race car take a victory lap"
+      title="Tap for a victory lap!"
+    >
+
+      <span class="track-line"></span>
+
+      <span class="finish-line"></span>
+
+      <!-- close-up of the little driver (zoomed crop of the car photo) -->
+      <span class="driver-cam" aria-hidden="true">
+        <span class="driver-cam-face"></span>
+        <span class="driver-cam-tag">ONBOARD</span>
+      </span>
+
+      <div class="car-run" id="carRun">
+        <img
+          src="images/niknikcar.png"
+          class="f1-car"
+          alt=""
+        >
+      </div>
+
+    </div>
+
+    <!-- RSVP -->
+
+    <form
+      class="rsvp-form"
+      id="rsvpForm"
+    >
+
+      <div class="rsvp-head">
+        <span class="rsvp-title">RSVP</span>
+        <span class="rsvp-note">Let us know if you're joining the celebration.</span>
+      </div>
+
+
+      <label class="sr-only" for="name">Guest full name</label>
+
+      <input
+        type="text"
+        id="name"
+        name="name"
+        placeholder="Guest / Pit Crew Full Name"
+        autocomplete="name"
+        required
+      >
+
+
+      <label class="sr-only" for="attendance">Attendance</label>
+
+      <select
+        id="attendance"
+        name="attendance"
+        required
+      >
+
+        <option
+          value=""
+          disabled
+          selected
+        >
+          Will you join the victory lap?
+        </option>
+
+        <option value="Yes, I will be there!">
+          🏁 YES! Count me in for the celebration
+        </option>
+
+        <option value="Sorry, I can't make it">
+          ❌ NO - Out of the Pit Lane
+        </option>
+
+      </select>
+
+
+      <button
+        type="submit"
+        id="submitBtn"
+      >
+        CLAIM VIP CHAMPION PASS 🏎️
+      </button>
+
+    </form>
+
+    <!-- CONFIRMATION -->
+
+    <div id="confirmation" aria-live="polite"></div>
+
+    <!-- EVENT DETAILS BUTTON -->
+
+    <button
+      type="button"
+      class="details-toggle"
+      id="detailsToggle"
+      aria-expanded="false"
+      aria-controls="flipBack"
+    >
+      <span>📋 VIEW EVENT DETAILS</span>
+    </button>
 
     <!-- COUNTDOWN (F1 start lights) -->
     <section class="countdown" aria-label="Countdown to the baptism ceremony">
@@ -91,12 +216,17 @@
     </section>
 
   </div>
-  <!-- /invite-top -->
+  <!-- /invite-bottom -->
 
+  </div>
+  <!-- /front -->
 
-    <!-- EVENT DETAILS -->
+  <!-- BACK -->
+  <div class="flip-face flip-back" id="flipBack" aria-hidden="true" inert>
 
-    <section class="race-details">
+    <!-- EVENT DETAILS (on the back of the card) -->
+
+    <section class="race-details" id="raceDetails">
 
       <div class="race-details-header">
 
@@ -134,27 +264,6 @@
           <strong>
             November 08, 2026
           </strong>
-
-          <div class="detail-actions">
-
-            <a
-              class="detail-link"
-              href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Nikola+Zayne%27s+Baptism+Ceremony&amp;dates=20261108T030000Z%2F20261108T070000Z&amp;details=Baptism+ceremony+at+11%3A00+AM%2C+reception+at+1%3A00+PM.&amp;location=Sto.+Tomas+De+Villanueva+Parish+Church%2C+Santolan%2C+Pasig+City"
-              target="_blank"
-              rel="noopener"
-            >
-              📌 GOOGLE CALENDAR
-            </a>
-
-            <a
-              class="detail-link"
-              href="calendar/nikola-zayne-baptism.ics"
-              download="nikola-zayne-baptism.ics"
-            >
-              📥 IPHONE / OUTLOOK
-            </a>
-
-          </div>
 
         </div>
 
@@ -306,108 +415,16 @@
 
     </section>
 
-
-  <!-- BOTTOM: RSVP + car -->
-  <div class="invite-bottom">
-
-    <!-- RSVP -->
-
-    <form
-      class="rsvp-form"
-      id="rsvpForm"
-    >
-
-      <div class="rsvp-head">
-        <span class="rsvp-title">RSVP</span>
-        <span class="rsvp-note">Let us know if you're joining the celebration.</span>
-      </div>
-
-
-      <label class="sr-only" for="name">Guest full name</label>
-
-      <input
-        type="text"
-        id="name"
-        name="name"
-        placeholder="Guest / Pit Crew Full Name"
-        autocomplete="name"
-        required
-      >
-
-
-      <label class="sr-only" for="attendance">Attendance</label>
-
-      <select
-        id="attendance"
-        name="attendance"
-        required
-      >
-
-        <option
-          value=""
-          disabled
-          selected
-        >
-          Will you join the victory lap?
-        </option>
-
-        <option value="Yes, I will be there!">
-          🏁 YES! Count me in for the celebration
-        </option>
-
-        <option value="Sorry, I can't make it">
-          ❌ NO - Out of the Pit Lane
-        </option>
-
-      </select>
-
-
-      <button
-        type="submit"
-        id="submitBtn"
-      >
-        CLAIM VIP CHAMPION PASS 🏎️
-      </button>
-
-    </form>
-
-
-    <!-- CONFIRMATION -->
-
-    <div id="confirmation" aria-live="polite"></div>
-
-
-    <!-- RACE TRACK + F1 CAR (below the form, never covers text) -->
-    <!--
-      If the car looks like it is driving backwards, change
-      class="pit-lane" to class="pit-lane face-left"
-    -->
-
-    <div
-      class="pit-lane"
-      id="pitLane"
-      role="button"
-      tabindex="0"
-      aria-label="Watch the race car take a victory lap"
-      title="Tap for a victory lap!"
-    >
-
-      <span class="track-line"></span>
-
-      <span class="finish-line"></span>
-
-      <div class="car-run" id="carRun">
-        <img
-          src="images/niknikcar.png"
-          class="f1-car"
-          alt=""
-        >
-      </div>
-
-    </div>
+    <button type="button" class="details-toggle back-toggle" id="backToggle">
+      <span>🏁 BACK TO RSVP</span>
+    </button>
 
   </div>
-  <!-- /invite-bottom -->
+  <!-- /back -->
+
+  </div>
+  </div>
+  <!-- /flip -->
 
   </div>
 
@@ -900,6 +917,115 @@
         requestAnimationFrame(frame);
 
       }
+
+      /* =========================================
+         FLIP CARD
+         "View event details" turns the card over,
+         "Back to RSVP" turns it back
+      ========================================= */
+
+      const flip      = document.getElementById("flip");
+      const flipInner = document.getElementById("flipInner");
+      const frontFace = document.getElementById("flipFront");
+      const backFace  = document.getElementById("flipBack");
+      const detailsBtn = document.getElementById("detailsToggle");
+      const backBtn    = document.getElementById("backToggle");
+
+      let flipped = false;
+
+      /* the card is as tall as the face that is showing */
+
+      function fitFlipHeight() {
+
+        const face = flipped ? backFace : frontFace;
+
+        flipInner.style.height = face.offsetHeight + "px";
+
+      }
+
+      /* once the turn is done, the side facing away is collapsed so its
+         (taller) content doesn't add empty scroll space under the card */
+
+      let parkTimer = null;
+
+      function parkHiddenFace() {
+
+        (flipped ? frontFace : backFace).classList.add("is-parked");
+
+      }
+
+      function setFlipped(value) {
+
+        flipped = value;
+
+        clearTimeout(parkTimer);
+
+        frontFace.classList.remove("is-parked");
+        backFace.classList.remove("is-parked");
+
+        parkTimer = setTimeout(parkHiddenFace, reduceMotion ? 0 : 850);
+
+        flip.classList.toggle("is-flipped", flipped);
+
+        /* the hidden side can't be focused or read out */
+
+        frontFace.inert = flipped;
+        backFace.inert  = !flipped;
+
+        frontFace.setAttribute("aria-hidden", String(flipped));
+        backFace.setAttribute("aria-hidden", String(!flipped));
+
+        detailsBtn.setAttribute("aria-expanded", String(flipped));
+
+        fitFlipHeight();
+
+        /* bring the top of the card back into view */
+
+        const top = flip.getBoundingClientRect().top;
+
+        if (top < 0) {
+
+          window.scrollBy({
+            top: top - 12,
+            behavior: reduceMotion ? "auto" : "smooth"
+          });
+
+        }
+
+        (flipped ? backBtn : detailsBtn).focus({ preventScroll: true });
+
+      }
+
+      detailsBtn.addEventListener("click", () => setFlipped(true));
+
+      backBtn.addEventListener("click", () => setFlipped(false));
+
+      document.addEventListener("keydown", (event) => {
+
+        if (event.key === "Escape" && flipped) {
+          setFlipped(false);
+        }
+
+      });
+
+      /* keep the height right when content changes
+         (fonts load, RSVP confirmation appears, window resizes) */
+
+      if (typeof ResizeObserver === "function") {
+
+        const ro = new ResizeObserver(fitFlipHeight);
+
+        ro.observe(frontFace);
+        ro.observe(backFace);
+
+      }
+
+      window.addEventListener("resize", fitFlipHeight);
+
+      window.addEventListener("load", fitFlipHeight);
+
+      fitFlipHeight();
+
 
       /* Watch the confirmation box (set by js/script.js) */
 

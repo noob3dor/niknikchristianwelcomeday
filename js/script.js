@@ -140,8 +140,29 @@ class RsvpFormUI {
         'attending-msg';
 
 
+      /*
+        Surprise icon: a random one pops up
+        together with the confirmation.
+      */
+
+      const surprises =
+        ['🏆', '🎁', '👑', '🏎️', '🥇', '🎈', '🍼'];
+
+      const surprise =
+        surprises[
+          Math.floor(
+            Math.random() * surprises.length
+          )
+        ];
+
+
       this.confirmationMessage.innerHTML =
-        '🏁 VIP CHAMPION PASS CONFIRMED! SEE YOU THERE! 🎉';
+        '<span class="surprise-icon" aria-hidden="true">' +
+        surprise +
+        '</span>' +
+        '<span class="confirm-text">' +
+        '🏁 VIP CHAMPION PASS CONFIRMED! SEE YOU THERE!' +
+        '</span>';
 
     }
 
@@ -212,6 +233,31 @@ class RsvpApp {
 
     const formData =
       this.ui.getFormData();
+
+
+    /*
+      The message only appears once the form is
+      really filled out (a name made of spaces
+      does not count).
+    */
+
+    if (
+      !formData.name ||
+      !formData.attendance
+    ) {
+
+      this.ui.nameInput.value =
+        formData.name;
+
+      (
+        !formData.name
+          ? this.ui.nameInput
+          : this.ui.attendanceSelect
+      ).reportValidity();
+
+      return;
+
+    }
 
 
     /*
