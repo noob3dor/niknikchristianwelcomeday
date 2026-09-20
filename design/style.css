@@ -1,0 +1,816 @@
+/* =========================================
+   ROOT VARIABLES
+========================================= */
+
+:root {
+
+  --bg-color: #0b0c10;
+
+  --card-bg: #1a1c23;
+
+  --accent-color: #e22828;
+
+  --secondary-accent: #f39c12;
+
+  --text-color: #ffffff;
+
+  --subtext-color: #c5c6c7;
+
+}
+
+
+/* =========================================
+   GLOBAL RESET
+========================================= */
+
+* {
+
+  box-sizing: border-box;
+
+  margin: 0;
+
+  padding: 0;
+
+  font-family:
+    'Impact',
+    'Segoe UI',
+    Tahoma,
+    Geneva,
+    Verdana,
+    sans-serif;
+
+}
+
+
+/* =========================================
+   BODY
+========================================= */
+
+body {
+
+  background-color: var(--bg-color);
+
+  background-image:
+    radial-gradient(
+      #1f2833 15%,
+      transparent 16%
+    ),
+    radial-gradient(
+      #1f2833 15%,
+      transparent 16%
+    );
+
+  background-size: 20px 20px;
+
+  background-position:
+    0 0,
+    10px 10px;
+
+  color: var(--text-color);
+
+  min-height: 100vh;
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  padding: 30px 20px 100px;
+
+}
+
+
+/* =========================================
+   INVITATION CARD
+========================================= */
+
+.invite-card {
+
+  position: relative;
+
+  width: 100%;
+
+  max-width: 480px;
+
+  padding: 30px;
+
+  text-align: center;
+
+  background:
+    linear-gradient(
+      135deg,
+      #121317 0%,
+      #1f232d 100%
+    );
+
+  border: 3px solid var(--accent-color);
+
+  border-radius: 14px;
+
+  box-shadow:
+    0 0 25px rgba(226, 40, 40, 0.4),
+    inset 0 0 15px rgba(0, 0, 0, 0.8);
+
+  /*
+    IMPORTANT
+
+    Original was:
+
+    overflow: hidden;
+
+    We changed it to visible
+    so the F1 car can go outside
+    the invitation.
+  */
+
+  overflow: visible;
+
+  /*
+    Keeps the card itself behind
+    the F1 car.
+  */
+
+  z-index: 10;
+
+}
+
+
+/* =========================================
+   CHECKERED FLAG TOP
+========================================= */
+
+.invite-card::before {
+
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+
+  left: 0;
+
+  width: 100%;
+
+  height: 12px;
+
+  background:
+
+    linear-gradient(
+      45deg,
+      #000 25%,
+      transparent 25%
+    ),
+
+    linear-gradient(
+      -45deg,
+      #000 25%,
+      transparent 25%
+    ),
+
+    linear-gradient(
+      45deg,
+      transparent 75%,
+      #000 75%
+    ),
+
+    linear-gradient(
+      -45deg,
+      transparent 75%,
+      #000 75%
+    );
+
+  background-size: 16px 16px;
+
+  background-position:
+
+    0 0,
+
+    0 8px,
+
+    8px -8px,
+
+    -8px 0px;
+
+  background-color: #fff;
+
+  border-radius:
+    10px
+    10px
+    0
+    0;
+
+  z-index: 1;
+
+}
+
+
+/* =========================================
+   CONTENT LAYER
+========================================= */
+
+.badge,
+h1,
+.subtitle,
+.event-details,
+.rsvp-form,
+#confirmation {
+
+  position: relative;
+
+  z-index: 20;
+
+}
+
+
+/* =========================================
+   BADGE
+========================================= */
+
+.badge {
+
+  display: inline-block;
+
+  background: var(--accent-color);
+
+  color: #fff;
+
+  padding: 6px 16px;
+
+  border-radius: 4px;
+
+  font-size: 0.85rem;
+
+  font-weight: bold;
+
+  margin-top: 10px;
+
+  margin-bottom: 12px;
+
+  text-transform: uppercase;
+
+  letter-spacing: 2px;
+
+  transform: skew(-10deg);
+
+  box-shadow:
+    2px 2px 0 #000;
+
+}
+
+
+/* =========================================
+   MAIN TITLE
+========================================= */
+
+h1 {
+
+  font-size: 2.3rem;
+
+  margin-bottom: 5px;
+
+  color: #fff;
+
+  text-transform: uppercase;
+
+  letter-spacing: 1.5px;
+
+  font-style: italic;
+
+  text-shadow:
+    2px 2px 0 var(--accent-color);
+
+}
+
+
+/* =========================================
+   SUBTITLE
+========================================= */
+
+p.subtitle {
+
+  font-family:
+    'Segoe UI',
+    sans-serif;
+
+  color: var(--subtext-color);
+
+  margin-bottom: 20px;
+
+  font-size: 0.95rem;
+
+  font-weight: 500;
+
+  line-height: 1.4;
+
+}
+
+
+/* =========================================
+   EVENT DETAILS
+========================================= */
+
+.event-details {
+
+  background: #090a0c;
+
+  border-left:
+    4px solid
+    var(--secondary-accent);
+
+  padding: 15px;
+
+  border-radius: 6px;
+
+  margin-bottom: 25px;
+
+  text-align: left;
+
+}
+
+
+/* =========================================
+   EVENT DETAIL ITEMS
+========================================= */
+
+.detail-item {
+
+  margin-bottom: 8px;
+
+  font-size: 0.95rem;
+
+  font-family:
+    'Segoe UI',
+    sans-serif;
+
+  line-height: 1.35;
+
+}
+
+
+.detail-item:last-child {
+
+  margin-bottom: 0;
+
+}
+
+
+.detail-item strong {
+
+  color: var(--secondary-accent);
+
+  text-transform: uppercase;
+
+}
+
+
+/* =========================================
+   RSVP FORM
+========================================= */
+
+.rsvp-form input,
+.rsvp-form select,
+.rsvp-form button {
+
+  font-family:
+    'Segoe UI',
+    sans-serif;
+
+  width: 100%;
+
+  padding: 14px;
+
+  margin-bottom: 14px;
+
+  border-radius: 6px;
+
+  border: 1px solid #333;
+
+  background: #090a0c;
+
+  color: #fff;
+
+  font-size: 0.95rem;
+
+  outline: none;
+
+}
+
+
+/* =========================================
+   INPUT FOCUS
+========================================= */
+
+.rsvp-form input:focus,
+.rsvp-form select:focus {
+
+  border-color:
+    var(--secondary-accent);
+
+  box-shadow:
+    0 0 8px
+    rgba(243, 156, 18, 0.2);
+
+}
+
+
+/* =========================================
+   SELECT
+========================================= */
+
+.rsvp-form select {
+
+  cursor: pointer;
+
+}
+
+
+/* =========================================
+   RSVP BUTTON
+========================================= */
+
+.rsvp-form button {
+
+  font-family:
+    'Impact',
+    'Segoe UI',
+    sans-serif;
+
+  background:
+    linear-gradient(
+      180deg,
+      #e22828 0%,
+      #a81212 100%
+    );
+
+  color: #fff;
+
+  font-size: 1.2rem;
+
+  text-transform: uppercase;
+
+  letter-spacing: 1px;
+
+  border: none;
+
+  cursor: pointer;
+
+  transition:
+    all 0.2s ease;
+
+  transform:
+    skew(-5deg);
+
+  box-shadow:
+    0 4px 0 #610b0b;
+
+}
+
+
+/* =========================================
+   BUTTON HOVER
+========================================= */
+
+.rsvp-form button:hover {
+
+  background:
+    linear-gradient(
+      180deg,
+      #ff3333 0%,
+      #c41414 100%
+    );
+
+  box-shadow:
+    0 2px 0 #610b0b;
+
+  transform:
+    skew(-5deg)
+    translateY(2px);
+
+}
+
+
+/* =========================================
+   BUTTON ACTIVE
+========================================= */
+
+.rsvp-form button:active {
+
+  transform:
+    skew(-5deg)
+    translateY(4px);
+
+  box-shadow:
+    0 0 0 #610b0b;
+
+}
+
+
+/* =========================================
+   CONFIRMATION
+========================================= */
+
+#confirmation {
+
+  display: none;
+
+  font-family:
+    'Impact',
+    sans-serif;
+
+  font-size: 1.3rem;
+
+  margin-top: 15px;
+
+  letter-spacing: 1px;
+
+  text-transform: uppercase;
+
+  line-height: 1.4;
+
+}
+
+
+/* =========================================
+   ATTENDING MESSAGE
+========================================= */
+
+.attending-msg {
+
+  color: #2ecc71;
+
+}
+
+
+/* =========================================
+   DECLINED MESSAGE
+========================================= */
+
+.declined-msg {
+
+  color: #f39c12;
+
+}
+
+
+/* =========================================
+   F1 CAR
+========================================= */
+
+.f1-car {
+
+  /*
+    This makes the car independent
+    from the normal page layout.
+  */
+
+  position: absolute;
+
+
+  /*
+    Desktop size
+  */
+
+  width: 500px;
+	
+
+  /*
+    Move car toward the
+    bottom-right outside edge.
+  */
+
+  right: -150px;
+
+  bottom: -108px;
+
+
+  /*
+    Put it above the invitation.
+  */
+
+  z-index: 100;
+
+
+  /*
+    VERY IMPORTANT:
+
+    The image will NOT block
+    the RSVP button/input.
+  */
+
+  pointer-events: none;
+
+
+  /*
+    Small racing angle.
+  */
+
+  transform: rotate(-2deg);
+
+
+  /*
+    Gives the car depth.
+  */
+
+  filter:
+    drop-shadow(
+      0 10px 10px
+      rgba(0, 0, 0, 0.65)
+    );
+
+
+  /*
+    Smooth movement.
+  */
+
+  transition:
+    transform 0.25s ease,
+    width 0.25s ease;
+
+}
+
+
+/* =========================================
+   F1 CAR HOVER
+========================================= */
+
+.invite-card:hover .f1-car {
+
+  transform:
+    rotate(-2deg)
+    translateY(-3px);
+
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 700px) {
+
+  body {
+
+    padding:
+      30px
+      15px
+      100px;
+
+  }
+
+
+  .invite-card {
+
+    max-width: 450px;
+
+    padding: 27px;
+
+  }
+
+
+  .f1-car {
+
+    width: 270px;
+
+    right: -105px;
+
+    bottom: -70px;
+
+  }
+
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+
+  body {
+
+    padding:
+      25px
+      12px
+      100px;
+
+    align-items: flex-start;
+
+  }
+
+
+  .invite-card {
+
+    margin-top: 15px;
+
+    padding:
+      25px
+      18px;
+
+    border-width: 2px;
+
+  }
+
+
+  h1 {
+
+    font-size: 1.9rem;
+
+  }
+
+
+  .badge {
+
+    font-size: 0.65rem;
+
+    padding:
+      6px
+      10px;
+
+    letter-spacing: 1px;
+
+  }
+
+
+  p.subtitle {
+
+    font-size: 0.85rem;
+
+  }
+
+
+  .detail-item {
+
+    font-size: 0.85rem;
+
+  }
+
+
+  /*
+    Smaller F1 car
+  */
+
+  .f1-car {
+
+    width: 225px;
+
+    right: -75px;
+
+    bottom: -60px;
+
+  }
+
+}
+
+
+/* =========================================
+   SMALL PHONE
+========================================= */
+
+@media (max-width: 380px) {
+
+  body {
+
+    padding-left: 8px;
+
+    padding-right: 8px;
+
+  }
+
+
+  .invite-card {
+
+    padding:
+      22px
+      14px;
+
+  }
+
+
+  h1 {
+
+    font-size: 1.65rem;
+
+  }
+
+
+  .badge {
+
+    font-size: 0.58rem;
+
+    letter-spacing: 0.5px;
+
+  }
+
+
+  .f1-car {
+
+    width: 195px;
+
+    right: -65px;
+
+    bottom: -52px;
+
+  }
+
+}
