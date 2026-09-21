@@ -1207,7 +1207,7 @@ p.subtitle {
 
   transform: translateZ(0);
 
-  overflow: hidden;
+  overflow: visible;
 
   border: 1px solid #30343b;
 
@@ -2058,8 +2058,8 @@ h1 {
 .driver-cam {
   position: absolute;
 
-  top: 16px;
-  left: 12px;
+  top: 100px;
+  left: -8px;
 
   z-index: 3;
 
