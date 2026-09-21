@@ -2081,7 +2081,7 @@ h1 {
   background-repeat: no-repeat;
 
   /* crop window = 150px of the 1352px photo, centred on the face */
-  background-size: calc(var(--cam) * 9.013) auto;
+  background-size: calc(var(--cam) * 9) auto;
   background-position:
     calc(var(--cam) * -3.623) /*Left and right*/
     calc(var(--cam) * -0.92); /*up and down*/
