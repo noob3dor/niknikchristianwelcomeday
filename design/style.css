@@ -2072,27 +2072,19 @@ h1 {
 
 .driver-cam-face {
   display: block;
-
   width: 100%;
   height: 100%;
-
   border-radius: 50%;
-
   border: 3px solid var(--gold);
-
   background-color: #16181d;
-
   background-image: url("../images/niknik3.png");
-
   background-repeat: no-repeat;
 
   /* crop window = 150px of the 1352px photo, centred on the face */
-
   background-size: calc(var(--cam) * 9.013) auto;
-
   background-position:
-    calc(var(--cam) * -4.413)
-    calc(var(--cam) * -0.92);
+    calc(var(--cam) * -3.623) /*Left and right*/
+    calc(var(--cam) * -0.92); /*up and down*/
 
   box-shadow:
     0 0 0 2px rgba(0, 0, 0, 0.6),
