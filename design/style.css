@@ -1207,7 +1207,7 @@ p.subtitle {
 
   transform: translateZ(0);
 
-  overflow: visible;
+  overflow: hidden;
 
   border: 1px solid #30343b;
 
